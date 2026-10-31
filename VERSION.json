@@ -1,0 +1,30 @@
+{
+  "version": "previous",
+  "saved_date": "2026-10-31",
+  "timezone": "Asia/Riyadh",
+  "description": "Previous alternative: separate corporate/individual photo sections; full-screen five-link menu.",
+  "entrypoint": "app.py",
+  "media": "Unchanged existing photos, logo and hero video",
+  "files": {
+    ".gitignore": "18a34dc1a67c354b71ccc7784a33bfc7de5834cc5984be90793b6b14069e7e8f",
+    ".streamlit/config.toml": "91adc874f6c2282bc1f55560569844d466fc78360698cc9ec006bd908aa23c17",
+    "DEPLOY_EACH_VERSION.md": "0e33ead6fff8fd6534dc1801961903e5aef5069a8aeb89eed6ed687ede10c0b7",
+    "README.md": "14b03dbbdb3225b080c508b91d90c32c9ad233807dc3e163a0af85726a1e092f",
+    "admin.py": "73a2e09e0b8bd0c095aab1a583fc0035e35bc23cf25a51915c838c8d513c9c9e",
+    "app.py": "43d3431bfd63f66bcfd11589d864c281a050ea106bf94679a08629208b475ae4",
+    "requirements.txt": "03ab59d623b3a16f80ac0067dd9a75865704cd32e82f26884d5469bd7aad9bdd",
+    "secrets.example.toml": "6678bb184ec22d6cbd964b217056e47cee03f6d6fa5fb3ea8b82c86c72e28099",
+    "storage.py": "9f7bf43883c4da4d0815b5079b39a4f452e6855ed27798a79b773c8b8fcf0b8c",
+    "website/alternative.css": "530a176b9a9efd3fb19150e86609cffcd4d18497544fe6440a01838a8b227753",
+    "website/assets/hero.mp4": "868264a81cbf0026bddf40307ffc2880012208f927283bb67c39fc8c3b451234",
+    "website/assets/legal-details.jpg": "259caf349693eb10fadb8d3d26b78a0c2c697bfdbba413dca4de9846fe1fb587",
+    "website/assets/logo-full.png": "deeea5b9d93fd0dcbc1ce942180bf02b441824c8769b3320ecff8ce752cf6bb6",
+    "website/assets/logo-mark.png": "68f861da6f013caa472e33e7e3daf94ef29b9b716924ee214b5cfe1a4efbc459",
+    "website/assets/office-brand.jpg": "0ac9c6deecac5461f3bb053f285a03d3425c20dee84efb4ad6de16835e388a5d",
+    "website/assets/office-desk.jpg": "01b34089435ec3f214c3316a20487f1aeb52d0a823b2bb47d21ee3f07e63781d",
+    "website/assets/reception.jpg": "53f8370fbdcbfb3c0383d3ac54bab70fd453e3e8f8dd488387d8ddfa08b2bbcb",
+    "website/contact-config.js": "f1e23c0635851e483de7214db4bea01f8da4fb8c2a608ab822a6688d779f298a",
+    "website/index.html": "ca3f3a9dcd08ea8b5fb383b29a08e30a36c61fac4bb8398fa3fb61f76e52f3dd",
+    "website/theme.css": "660801b872628e5eef843b1b7b8054d1831a3d0ed8fc3493d43b389146919ccb"
+  }
+}
