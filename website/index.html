@@ -555,7 +555,7 @@ function flipCard(key,label,list,image){
     '<span class="flip-in">'+
       '<span class="flip-face flip-front"><span class="flip-pic"><img src="assets/'+image+'" alt="" loading="lazy"></span>'+
         '<b>'+label+'</b><span class="flip-foot"><span>'+t.flipHint+'</span>'+svgIco('flip')+'</span></span>'+
-      '<span class="flip-face flip-back" aria-hidden="true"><b>'+label+'</b><span class="flip-sub">'+t.flipHint+'</span>'+
+      '<span class="flip-face flip-back" aria-hidden="true"><b>'+label+'</b>'+
         list.map(function(x){return '<span class="flip-item">'+x+'</span>'}).join('')+'</span>'+
     '</span></button>';
 }

@@ -82,10 +82,10 @@ a{text-underline-offset:5px}.btn{background:var(--ink);border-color:var(--ink);c
 .flip b{font-weight:500;font-size:22px;line-height:1.5}
 .flip-foot{display:flex;align-items:center;justify-content:space-between;gap:16px;color:var(--on-ink-soft);font-size:14px}
 .flip-foot svg{width:20px;height:20px;fill:none;stroke:var(--rust-lift);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.flip-back{transform:rotateY(180deg)}
-.flip-sub{color:var(--rust-lift);font-size:14px;margin-bottom:10px}
-.flip-item{padding-block:9px;border-top:1px solid rgba(191,204,216,.2);font-size:15px;line-height:1.5}
-.flip-item:last-child{border-bottom:1px solid rgba(191,204,216,.2)}
+.flip-back{transform:rotateY(180deg);justify-content:center}
+.flip-back b{color:var(--rust-lift);margin-bottom:8px}
+.flip-item{font-size:16px;line-height:1.9}
+:root[lang=en] .flip-item{line-height:1.6;margin-bottom:4px}
 @media(hover:hover) and (pointer:fine){
   .flip:hover .flip-in{transform:rotateY(var(--peek));transition-duration:.24s;transition-timing-function:var(--ease-out)}
   .flip[aria-expanded=true]:hover .flip-in{transform:rotateY(calc(var(--turn) + var(--peek)))}
