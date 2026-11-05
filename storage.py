@@ -2,6 +2,8 @@
 from contextlib import contextmanager
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
+import base64
+import binascii
 import hashlib
 import hmac
 import json
@@ -11,6 +13,18 @@ import uuid
 from urllib.parse import urlparse
 
 DEFAULTS = {"whatsapp": "", "address_ar": "الرياض، المملكة العربية السعودية", "address_en": "Riyadh, Saudi Arabia", "latitude": 25.0048611, "longitude": 46.6021667, "maps_url": "https://maps.app.goo.gl/cBHxwKfLqGYcoLCr8", "hours_ar": "الأحد – الخميس، ٩ صباحًا – ٥ مساءً", "hours_en": "Sunday–Thursday, 9am–5pm"}
+
+MAX_ATTACHMENTS = 3
+MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
+ZIP_SIGNATURE = b'PK\x03\x04'
+ATTACHMENT_SIGNATURES = {
+    'pdf': (b'%PDF-',),
+    'png': (b'\x89PNG\r\n\x1a\n',),
+    'jpg': (b'\xff\xd8\xff',),
+    'jpeg': (b'\xff\xd8\xff',),
+    'doc': (b'\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1',),
+    'docx': (ZIP_SIGNATURE,),
+}
 
 def now():
     return datetime.now(timezone.utc).isoformat()
@@ -28,6 +42,26 @@ def text(value, limit, required=False):
     if len(value) > limit or (required and not value):
         raise ValueError("Missing or oversized field")
     return value
+
+def attachment(item):
+    if not isinstance(item, dict):
+        raise ValueError('Invalid attachment')
+    name = re.sub(r'[\x00-\x1f\x7f/\\\\]', '_', text(item.get('name', ''), 200, True))
+    extension = name.rsplit('.', 1)[-1].lower() if '.' in name else ''
+    if extension not in ATTACHMENT_SIGNATURES:
+        raise ValueError('Unsupported attachment type')
+    encoded = item.get('data')
+    if not isinstance(encoded, str) or len(encoded) > (MAX_ATTACHMENT_BYTES + 2) // 3 * 4:
+        raise ValueError('Attachment too large')
+    try:
+        content = base64.b64decode(encoded, validate=True)
+    except (binascii.Error, ValueError):
+        raise ValueError('Invalid attachment')
+    if not content or len(content) > MAX_ATTACHMENT_BYTES:
+        raise ValueError('Attachment too large')
+    if not content.startswith(ATTACHMENT_SIGNATURES[extension]):
+        raise ValueError('Attachment content does not match its type')
+    return name, content
 
 def validate_settings(data):
     result = {k: data.get(k, v) for k, v in DEFAULTS.items()}
@@ -75,10 +109,14 @@ class Store:
                 'CREATE TABLE IF NOT EXISTS visits (id TEXT PRIMARY KEY, visitor_hash TEXT NOT NULL, created_at TEXT NOT NULL)',
                 'CREATE TABLE IF NOT EXISTS office_settings (id INTEGER PRIMARY KEY, payload TEXT NOT NULL)',
                 'CREATE TABLE IF NOT EXISTS login_attempts (id TEXT PRIMARY KEY, created_at TEXT NOT NULL)',
+                'CREATE TABLE IF NOT EXISTS attachments (id TEXT PRIMARY KEY, consultation_id TEXT NOT NULL REFERENCES consultations(id), created_at TEXT NOT NULL, filename TEXT NOT NULL, content BLOB NOT NULL)',
+                'CREATE INDEX IF NOT EXISTS attachments_consultation ON attachments(consultation_id)',
                 'CREATE INDEX IF NOT EXISTS consultations_created ON consultations(created_at)',
                 'CREATE INDEX IF NOT EXISTS visits_created ON visits(created_at)',
             ]:
                 self.run(c, sql)
+            if 'subject' not in [row['name'] for row in self.run(c, 'PRAGMA table_info(consultations)')]:
+                self.run(c, "ALTER TABLE consultations ADD COLUMN subject TEXT NOT NULL DEFAULT ''")
 
     def settings(self, phone=''):
         with self.connection() as c:
@@ -106,18 +144,29 @@ class Store:
         name = text(event.get('name', ''), 120, source == 'form')
         mobile = text(event.get('mobile', ''), 30, source == 'form')
         email = text(event.get('email', ''), 254)
-        details = text(event.get('details', ''), 4000)
+        subject = text(event.get('subject', ''), 200, source == 'form')
+        details = text(event.get('details', ''), 4000, source == 'form')
+        files = event.get('attachments', [])
+        if not isinstance(files, list) or len(files) > MAX_ATTACHMENTS or (files and source != 'form'):
+            raise ValueError('Invalid attachments')
+        files = [attachment(item) for item in files]
         if source == 'form':
             if event.get('consent') is not True or len(name) < 2:
                 raise ValueError('Your consent and name are required.')
             if not re.fullmatch(r'(?:0?5\d{8}|(?:\+?966)5\d{8})', mobile):
                 raise ValueError('Invalid Saudi mobile number.')
-            if not service or (email and not re.fullmatch(r'[^@\s]+@[^@\s.]+(?:\.[^@\s.]+)+', email)):
+            if not service or not re.fullmatch(r'[^@\s]+@[^@\s.]+(?:\.[^@\s.]+)+', email):
                 raise ValueError('Invalid service or email.')
         timestamp = now()
         with self.connection() as c:
-            self.run(c, 'INSERT INTO consultations(id,created_at,updated_at,status,source,language,service,name,mobile,email,details,notes) VALUES (?,?,?,\'open\',?,?,?,?,?,?,?,\'\') ON CONFLICT(id) DO NOTHING', (ident, timestamp, timestamp, source, event['language'], service, name, mobile, email, details))
+            inserted = self.run(c, 'INSERT INTO consultations(id,created_at,updated_at,status,source,language,service,name,mobile,email,subject,details,notes) VALUES (?,?,?,\'open\',?,?,?,?,?,?,?,?,\'\') ON CONFLICT(id) DO NOTHING', (ident, timestamp, timestamp, source, event['language'], service, name, mobile, email, subject, details)).rowcount
+            for filename, content in files if inserted else []:
+                self.run(c, 'INSERT INTO attachments(id,consultation_id,created_at,filename,content) VALUES (?,?,?,?,?)', (str(uuid.uuid4()), ident, timestamp, filename, content))
         return ident
+
+    def attachments(self, ident):
+        with self.connection() as c:
+            return [dict(row) for row in self.run(c, 'SELECT id,filename,content FROM attachments WHERE consultation_id=? ORDER BY created_at,filename', (valid_id(ident),)).fetchall()]
 
     def requests(self):
         with self.connection() as c:

@@ -138,103 +138,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 .scroll-cue i{display:block;width:34px;height:1px;background:var(--brass);transform-origin:var(--cue-origin,left);animation:cue 2.6s ease-in-out infinite}
 @keyframes cue{0%,100%{transform:scaleX(.3);opacity:.5}50%{transform:scaleX(1);opacity:1}}
 
-/* ---- about ---- */
-.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,76px);align-items:center}
-.fig{position:relative}
-.fig img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:saturate(.92)}
-.fig::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px var(--line);pointer-events:none}
-.about p{color:var(--on-ink-soft);margin:22px 0 0;max-width:56ch}
-.about p:first-of-type{color:var(--on-ink)}
-.about .h-sec{margin-top:4px}
-
-/* ---- services ---- */
-.svc-head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:34px}
-.chip{
-  padding:10px 20px;font-size:13px;border:1px solid var(--line);color:var(--on-ink-soft);
-  transition:.25s;letter-spacing:.02em;
-}
-.chip:hover{color:var(--on-ink);border-color:var(--on-ink-soft)}
-.chip[aria-pressed="true"]{background:var(--brass);border-color:var(--brass);color:var(--ink);font-weight:500}
-.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:34px;border:1px solid var(--line)}
-.card{
-  background:var(--ink);padding:30px 28px 26px;text-align:start;
-  display:flex;flex-direction:column;gap:14px;min-width:0;
-  transition:background .3s;position:relative;
-}
-.card:hover{background:var(--ink-raise)}
-.card::before{
-  content:"";position:absolute;inset-block-start:0;inset-inline-start:0;height:2px;width:0;
-  background:var(--rust);transition:width .35s ease;
-}
-.card:hover::before{width:100%}
-.card .ico{width:30px;height:30px;color:var(--brass);flex-shrink:0}
-.card .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
-.card h3{font-size:18px;line-height:1.5;font-weight:600}
-:root[lang="en"] .card h3{font-size:20px;font-weight:500}
-.card p{margin:0;font-size:14.5px;color:var(--on-ink-soft);line-height:1.8}
-.card .more{
-  margin-top:auto;padding-top:8px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--brass);display:flex;align-items:center;gap:8px;opacity:.75;transition:opacity .25s;
-}
-.card:hover .more{opacity:1}
-.card[hidden]{display:none}
-
-/* ---- split blocks ---- */
-.split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
-.split .pane{padding:clamp(40px,6vw,84px) clamp(28px,5vw,72px);display:flex;flex-direction:column;justify-content:center}
-.split .pic{position:relative;min-height:380px;background:var(--ink-deep)}
-.split .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.split.paper{background:var(--bone);color:var(--on-bone)}
-.split.paper .eyebrow{color:var(--rust)}
-.split.paper .lede{color:var(--on-bone-soft)}
-.split.paper .ul li{border-color:var(--line-bone)}
-.split.paper .ul li::before{background:var(--rust)}
-.split.rusty{background:var(--rust)}
-.split.rusty .eyebrow{color:rgba(255,255,255,.72)}
-.split.rusty .eyebrow::after{background:rgba(255,255,255,.28)}
-.split.rusty .lede{color:rgba(255,255,255,.84)}
-.split.rusty .ul li{border-color:rgba(255,255,255,.2)}
-.split.rusty .ul li::before{background:#fff}
-.ul{list-style:none;padding:0;margin:30px 0 0;display:grid;gap:0}
-.ul li{
-  padding-block:14px;border-top:1px solid var(--line);font-size:15px;
-  display:flex;align-items:center;gap:12px;
-}
-.ul li:last-child{border-bottom:1px solid var(--line)}
-.ul li::before{content:"";width:5px;height:5px;background:var(--brass);flex-shrink:0}
-.split .btn{align-self:flex-start;margin-top:34px}
-
-/* ---- values ---- */
-.vals{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-bone);border:1px solid var(--line-bone);margin-top:40px}
-.val{background:var(--bone);padding:38px 32px 42px;display:flex;flex-direction:column;gap:16px;min-width:0}
-.val .n{font-size:13px;letter-spacing:.2em;color:var(--rust);font-family:var(--d-en);font-variant-numeric:tabular-nums}
-.val h3{font-size:21px;color:var(--on-bone)}
-.val p{margin:0;color:var(--on-bone-soft);font-size:15px}
-.paper-band{background:var(--bone);color:var(--on-bone)}
-.paper-band .eyebrow{color:var(--rust)}
-.paper-band .lede{color:var(--on-bone-soft)}
-
-/* ---- vision ---- */
-.vision{position:relative;min-height:min(72svh,620px);display:flex;align-items:center;overflow:hidden}
-.vision img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.vision::after{content:"";position:absolute;inset:0;background:linear-gradient(to right,rgba(16,38,61,.92),rgba(16,38,61,.55))}
-:root[lang="en"] .vision::after{background:linear-gradient(to left,rgba(16,38,61,.92),rgba(16,38,61,.55))}
-.vision .wrap{position:relative;z-index:2}
-.vision p{
-  font-family:var(--display);font-size:clamp(24px,3.8vw,46px);line-height:1.5;
-  max-width:19ch;margin:20px 0 0;font-weight:500;
-}
-:root[lang="en"] .vision p{line-height:1.16;max-width:17ch;font-weight:300}
-
-/* ---- credentials ---- */
-.creds{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:38px}
-.cred{background:var(--ink-raise);padding:30px 26px;display:flex;flex-direction:column;gap:12px}
-.cred .ico{width:26px;height:26px;color:var(--on-ink-soft);opacity:.75}
-.cred .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.1}
-.cred span{font-size:15px;color:var(--on-ink)}
-.cred em{font-style:normal;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-ink-soft);opacity:.6}
-
 /* ---- form ---- */
 .form-band{background:var(--ink-raise)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
@@ -261,18 +164,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 .form-msg.ok{border-color:var(--brass);color:var(--brass)}
 .form-msg.no{border-color:var(--rust-lift);color:var(--rust-lift)}
 
-/* ---- contact ---- */
-.contact{display:grid;grid-template-columns:1.1fr 1fr;gap:clamp(34px,5vw,72px);align-items:start}
-.crow{display:flex;gap:16px;padding-block:20px;border-top:1px solid var(--line);align-items:flex-start}
-.crow:last-child{border-bottom:1px solid var(--line)}
-.crow .ico{width:20px;height:20px;color:var(--brass);flex-shrink:0;margin-top:3px}
-.crow .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round}
-.crow .k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--on-ink-soft);display:block;margin-bottom:4px}
-.crow .v{font-size:16px;color:var(--on-ink);word-break:break-word}
-.crow .v[dir="ltr"]{display:inline-block;font-variant-numeric:tabular-nums}
-.copy{margin-inline-start:auto;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-soft);border:1px solid var(--line);padding:6px 11px;transition:.25s;flex-shrink:0}
-.copy:hover{color:var(--brass);border-color:var(--brass)}
-
 /* ---- footer ---- */
 .ftr{background:var(--ink-deep);padding-block:clamp(50px,6vw,78px) 0}
 .ftr-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:38px}
@@ -289,25 +180,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 }
 .ftr-btm p{margin:0;max-width:60ch}
 
-/* ---- modal ---- */
-.ovl{
-  position:fixed;inset:0;z-index:80;background:rgba(10,25,40,.82);backdrop-filter:blur(6px);
-  display:flex;align-items:center;justify-content:center;padding:20px;
-}
-.ovl[hidden]{display:none!important}
-.sheet{
-  background:var(--ink-raise);border:1px solid var(--line);max-width:520px;width:100%;
-  padding:clamp(28px,4vw,44px);position:relative;max-height:88svh;overflow-y:auto;
-}
-.sheet .ico{width:34px;height:34px;color:var(--brass);margin-bottom:20px}
-.sheet .ico svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
-.sheet h3{font-size:clamp(22px,3vw,30px);line-height:1.4}
-.sheet p{color:var(--on-ink-soft);margin:16px 0 0}
-.sheet .tag{display:inline-block;margin-top:22px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--brass);border:1px solid var(--line);padding:6px 12px}
-.sheet .btn{margin-top:30px;width:100%}
-.x{position:absolute;inset-block-start:16px;inset-inline-end:16px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;color:var(--on-ink-soft);transition:color .25s}
-.x:hover{color:var(--on-ink)}
-
 /* ---- mobile sticky ---- */
 .mbar{
   display:none;position:fixed;inset-inline:0;bottom:0;z-index:55;
@@ -320,15 +192,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 .mbar a{display:flex;align-items:center;justify-content:center;gap:9px;padding:17px 10px;font-size:14px;font-weight:500}
 .mbar a:first-child{background:var(--rust);color:#fff}
 .mbar a svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-
-/* ---- reveal ---- */
-.rv.arm{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.22,.8,.3,1),transform .85s cubic-bezier(.22,.8,.3,1)}
-.rv.arm.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  .rv{opacity:1!important;transform:none!important;transition:none}
-  .scroll-cue i{animation:none}
-  *{scroll-behavior:auto!important}
-}
 
 /* ---- responsive ---- */
 @media (max-width:1000px){
@@ -369,16 +232,13 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 <link rel="stylesheet" href="alternative.css">
 
 </head><body>
-<a class="skip-link" href="#services">تخطَّ إلى المحتوى / Skip to content</a>
+<a class="skip-link" href="#expertise">تخطَّ إلى المحتوى / Skip to content</a>
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
-    <a class="brand" href="#top">
-      <span class="mark" data-mark="26"></span>
-      <b data-i="brandShort"></b>
-    </a>
+    <a class="brand" href="#top"><img class="logo" src="assets/logo.svg" alt="محمد منصور السبعان للمحاماة والاستشارات القانونية والتوثيق" width="99" height="88"></a>
     <div class="hdr-act">
       <button class="lang" id="lang" type="button"></button>
-      <a class="btn sm" href="#consult" data-i="ctaPrimary"></a>
+      <a class="btn sm" href="#consultation" data-i="ctaPrimary"></a>
       <button class="burger" id="burger" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="nav"><span class="menu-label">القائمة</span><span class="menu-lines" aria-hidden="true"></span></button>
     </div>
   </div>
@@ -387,180 +247,139 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 
 <div class="menu-panel" id="nav" hidden role="dialog" aria-modal="true" aria-label="القائمة الرئيسية" tabindex="-1">
   <div class="wrap menu-top">
-    <a class="brand" href="#top"><span class="mark" data-mark="26"></span><b data-i="brandShort"></b></a>
+    <a class="brand" href="#top"><img class="logo" src="assets/logo-light.svg" alt="" width="99" height="88"></a>
     <div class="menu-tools"><button class="menu-language lang" type="button">EN</button><button class="menu-close" type="button"><span class="close-label">إغلاق</span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg></button></div>
   </div>
   <div class="wrap menu-body">
     <nav class="menu-links" aria-label="القائمة الرئيسية">
+      <a href="#top" data-i="navHome"></a>
       <a href="#about" data-i="navAbout"></a>
-      <a href="#services" data-i="navSvc"></a>
-      <a href="#values" data-i="navVal"></a>
-      <a href="#credentials" data-i="navCred"></a>
+      <a href="#expertise" data-i="navExpertise"></a>
+      <a href="#vision" data-i="navVision"></a>
       <a href="#contact" data-i="navContact"></a>
-
     </nav>
-    <div class="menu-visual"><img src="assets/reception.jpg" alt="" width="640" height="640"><a class="btn" href="#consult" data-i="ctaPrimary"></a></div>
+    <div class="menu-visual"><img src="assets/reception.jpg" alt="" width="640" height="640"><a class="btn" href="#consultation" data-i="ctaPrimary"></a></div>
   </div>
 </div>
 
-<main id="top">
+<main id="home">
 
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="hero-title">
+  <!-- VISION -->
+  <section class="hero" id="vision" aria-labelledby="vision-title">
     <div class="wrap hero-in">
-      <h1 id="hero-title" data-i="heroH">حين تتعقّد المسائل، يبدأ الوضوح.</h1>
-      <div class="hero-summary"><p class="lede" data-i="heroSub"></p>
-        <div class="hero-cta"><a class="btn" href="#consult" data-i="ctaPrimary"></a><a class="hero-services" href="#services" data-i="ctaSecondary"></a></div>
-      </div>
+      <h1 id="vision-title" data-i="visionH"></h1>
+      <p class="vision-line" data-i="visionLine"></p>
     </div>
     <div class="wrap hero-media-wrap"><div class="hero-media">
       <video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="assets/office-brand.jpg" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
       <button id="videoToggle" type="button" class="video-toggle" aria-label="Pause background video">Ⅱ</button>
     </div></div>
-    <div class="audience-bar"><div class="wrap"><a href="#corporate" data-i="corpLabel"></a><a href="#individuals" data-i="indLabel"></a></div></div>
   </section>
 
-  <!-- ABOUT -->
-  <section class="band watermarked" id="about">
-    <div class="wrap two about">
-      <div class="rv">
-        <h2 class="h-sec" data-i="aboutH"></h2>
-        <p data-i="aboutP1"></p>
-        <p data-i="aboutP2"></p>
+  <!-- EXPERTISE -->
+  <section class="band" id="expertise" aria-labelledby="expertise-title">
+    <div class="wrap xp-grid">
+      <h2 class="h-sec" id="expertise-title" data-i="expertiseH"></h2>
+      <ul class="xp-list" id="xpList"></ul>
+      <div class="audience" id="audience"></div>
+    </div>
+  </section>
+
+  <!-- RIGHTS -->
+  <section class="band" id="about" aria-labelledby="about-title">
+    <div class="wrap care">
+      <div>
+        <h2 class="h-sec" id="about-title" data-i="careH"></h2>
+        <p class="lede" data-i="careP"></p>
+        <a class="btn" href="#consultation" data-i="ctaPrimary"></a>
       </div>
-      <figure class="fig rv" style="margin:0">
-        <img src="assets/reception.jpg" alt="" id="aboutImg" loading="lazy">
-      </figure>
+      <figure class="care-pic"><img src="assets/office-brand.jpg" alt="" id="careImg" loading="lazy"></figure>
     </div>
   </section>
 
-  <hr class="rule">
+</main>
 
-  <!-- SERVICES -->
-  <section class="band" id="services">
-    <div class="wrap">
-      <div class="svc-head rv">
-        <div>
-          <h2 class="h-sec" data-i="svcH"></h2>
-        </div>
-        <p class="lede" style="margin:0;max-width:46ch" data-i="svcLede"></p>
-      </div>
-      <div class="chips rv" role="group" id="chips"></div>
-      <div class="grid rv" id="grid"></div>
-    </div>
-  </section>
+<main id="consultation" hidden>
 
-  <!-- CORPORATE -->
-  <section class="split paper" id="corporate">
-    <div class="pane">
-      <h2 class="h-sec" data-i="corpH"></h2>
-      <p class="lede" data-i="corpBody"></p>
-      <ul class="ul" id="corpList"></ul>
-      <a class="btn dark" href="#services" data-track="corporate" data-i="corpCta"></a>
-    </div>
-    <div class="pic"><img src="assets/office-desk.jpg" alt="" loading="lazy" id="corpImg"></div>
-  </section>
-
-  <!-- INDIVIDUALS -->
-  <section class="split rusty flip" id="individuals">
-    <div class="pic"><img src="assets/legal-details.jpg" alt="" loading="lazy" id="indImg"></div>
-    <div class="pane">
-      <h2 class="h-sec" data-i="indH"></h2>
-      <p class="lede" data-i="indBody"></p>
-      <ul class="ul" id="indList"></ul>
-      <a class="btn ghost" style="border-color:rgba(255,255,255,.5);color:#fff" href="#consult" data-i="ctaPrimary"></a>
-    </div>
-  </section>
-
-  <!-- VALUES -->
-  <section class="band paper-band watermarked" id="values">
-    <div class="wrap">
-      <h2 class="h-sec rv" data-i="valH"></h2>
-      <div class="vals rv" id="vals"></div>
-    </div>
-  </section>
-
-  <!-- VISION -->
-  <section class="vision">
-    <img src="assets/office-brand.jpg" alt="" loading="lazy" id="visionImg">
-    <div class="wrap">
-      <p class="rv" data-i="visionLine"></p>
-    </div>
-  </section>
-
-  <!-- CREDENTIALS -->
-  <section class="band" id="credentials">
-    <div class="wrap">
-      <h2 class="h-sec rv" data-i="credH"></h2>
-      <p class="lede rv" data-i="credLede"></p>
-      <div class="creds rv" id="creds"></div>
-    </div>
-  </section>
-
-  <hr class="rule">
-
-  <!-- CONSULT -->
   <section class="band form-band" id="consult">
     <div class="wrap">
-      <h2 class="h-sec rv" data-i="formH"></h2>
-      <p class="lede rv" data-i="formLede"></p>
-      <form class="rv" id="form" novalidate>
-        <div class="form-grid">
-          <div class="field" data-f="name">
-            <label for="f-name"><span data-i="fName"></span> <span class="req">*</span></label>
-            <input id="f-name" maxlength="120" name="name" type="text" autocomplete="name">
-            <span class="err" data-err aria-live="polite"></span>
-          </div>
-          <div class="field" data-f="mobile">
-            <label for="f-mobile"><span data-i="fMobile"></span> <span class="req">*</span></label>
-            <input id="f-mobile" maxlength="30" name="mobile" type="tel" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="05XXXXXXXX">
-            <span class="err" data-err aria-live="polite"></span>
-          </div>
-          <div class="field" data-f="email">
-            <label for="f-email" data-i="fEmail"></label>
-            <input id="f-email" maxlength="254" name="email" type="email" dir="ltr" autocomplete="email">
-            <span class="err" data-err aria-live="polite"></span>
-          </div>
-          <div class="field" data-f="service">
-            <label for="service-trigger"><span id="service-label" data-i="fService"></span> <span class="req">*</span></label>
-            <div class="service-picker">
-              <select id="f-service" name="service" hidden tabindex="-1" aria-hidden="true"></select>
-              <button class="service-trigger" id="service-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="service-options" aria-labelledby="service-label service-value"><span id="service-value"></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
-              <div class="service-options" id="service-options" role="listbox" aria-labelledby="service-label" hidden></div>
+      <div class="consult-intro">
+        <h1 class="h-sec" id="consult-title" data-i="consultH"></h1>
+        <p class="lede" data-i="consultP1"></p>
+        <p class="lede" data-i="consultP2"></p>
+      </div>
+      <div class="consult-form">
+        <h2 data-i="formH"></h2>
+        <p class="form-lede" data-i="formLede"></p>
+        <form id="form" novalidate>
+          <div class="form-grid">
+            <div class="field" data-f="name">
+              <label for="f-name"><span data-i="fName"></span> <span class="req">*</span></label>
+              <input id="f-name" maxlength="120" name="name" type="text" autocomplete="name">
+              <span class="err" data-err aria-live="polite"></span>
             </div>
-            <span class="err" data-err aria-live="polite"></span>
+            <div class="field" data-f="mobile">
+              <label for="f-mobile"><span data-i="fMobile"></span> <span class="req">*</span></label>
+              <input id="f-mobile" maxlength="30" name="mobile" type="tel" inputmode="tel" dir="ltr" autocomplete="tel" placeholder="05XXXXXXXX">
+              <span class="err" data-err aria-live="polite"></span>
+            </div>
+            <div class="field" data-f="email">
+              <label for="f-email"><span data-i="fEmail"></span> <span class="req">*</span></label>
+              <input id="f-email" maxlength="254" name="email" type="email" dir="ltr" autocomplete="email">
+              <span class="err" data-err aria-live="polite"></span>
+            </div>
+            <div class="field" data-f="service">
+              <label for="service-trigger"><span id="service-label" data-i="fService"></span> <span class="req">*</span></label>
+              <div class="service-picker">
+                <select id="f-service" name="service" hidden tabindex="-1" aria-hidden="true"></select>
+                <button class="service-trigger" id="service-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="service-options" aria-labelledby="service-label service-value"><span id="service-value"></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+                <div class="service-options" id="service-options" role="listbox" aria-labelledby="service-label" hidden></div>
+              </div>
+              <span class="err" data-err aria-live="polite"></span>
+            </div>
+            <div class="field full" data-f="subject">
+              <label for="f-subject"><span data-i="fSubject"></span> <span class="req">*</span></label>
+              <input id="f-subject" maxlength="200" name="subject" type="text">
+              <span class="err" data-err aria-live="polite"></span>
+            </div>
+            <div class="field full" data-f="details">
+              <label for="f-details"><span data-i="fDetails"></span> <span class="req">*</span></label>
+              <textarea id="f-details" maxlength="4000" name="details"></textarea>
+              <span class="err" data-err aria-live="polite"></span>
+            </div>
+            <div class="field full" data-f="files">
+              <span class="field-label" id="files-label" data-i="fFiles"></span>
+              <input class="file-input" id="f-files" name="files" type="file" multiple accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" aria-labelledby="files-label" aria-describedby="files-hint">
+              <label class="file-btn" for="f-files"><span data-i="filePick"></span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m20 11.5-8.2 8.2a5 5 0 0 1-7-7l8.5-8.6a3.3 3.3 0 0 1 4.7 4.7l-8.5 8.6a1.7 1.7 0 0 1-2.4-2.4l7.8-7.8"/></svg></label>
+              <span class="file-hint" id="files-hint" data-i="fileHint"></span>
+              <ul class="file-list" id="fileList" hidden></ul>
+              <span class="err" data-err aria-live="polite"></span>
+            </div>
+            <div class="field full" data-f="consent">
+              <label class="consent" for="f-consent">
+                <input id="f-consent" name="consent" type="checkbox">
+                <span data-i="fConsent"></span>
+              </label>
+              <span class="err" data-err aria-live="polite"></span>
+            </div>
           </div>
-          <div class="field full" data-f="details">
-            <label for="f-details" data-i="fDetails"></label>
-            <textarea id="f-details" maxlength="4000" name="details"></textarea>
-            <span class="err" data-err aria-live="polite"></span>
+          <div class="form-foot">
+            <button class="btn" id="formSubmit" type="submit" data-i="fSubmit"></button>
+            <p class="form-note" data-i="fNote"></p>
           </div>
-          <div class="field full" data-f="consent">
-            <label class="consent" for="f-consent">
-              <input id="f-consent" name="consent" type="checkbox">
-              <span data-i="fConsent"></span>
-            </label>
-            <span class="err" data-err aria-live="polite"></span>
-          </div>
-        </div>
-        <div class="form-foot">
-          <button class="btn" type="submit" data-i="fSubmit"></button>
-          <p class="form-note" data-i="fNote"></p>
-        </div>
-        <div class="form-msg" id="formMsg" hidden role="status" aria-live="polite"></div>
-      </form>
+          <div class="form-msg" id="formMsg" hidden role="status" aria-live="polite"></div>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="band" id="contact">
-    <div class="wrap contact">
-      <div class="rv">
-        <h2 class="h-sec" data-i="contactH"></h2>
-        <p class="lede" data-i="footTag"></p>
+  <section class="band closing" id="privacy" aria-labelledby="privacy-title">
+    <div class="wrap closing-in">
+      <div>
+        <h2 id="privacy-title" data-i="privacyH"></h2>
+        <p data-i="privacyP"></p>
       </div>
-      <div class="rv" id="contactRows"></div>
-      <div class="map-panel"><iframe title="موقع مكتب محمد السبعان / Office location" src="https://maps.google.com/maps?q=25.0048611,46.6021667&amp;z=16&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe><a class="map-link" href="https://maps.app.goo.gl/cBHxwKfLqGYcoLCr8" target="_blank" rel="noopener noreferrer" data-i="mapOpen"></a></div>
+      <p class="closing-line" data-i="closing"></p>
     </div>
   </section>
 
@@ -570,41 +389,39 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 <footer class="ftr">
   <div class="wrap">
     <div class="ftr-top">
+      <a class="ftr-logo" href="#top"><img src="assets/logo-light.svg" alt="محمد منصور السبعان للمحاماة والاستشارات القانونية والتوثيق" width="203" height="180" loading="lazy"></a>
       <div>
-        <div class="brand"><span class="mark" data-mark="34"></span></div>
-        <p class="ftr-tag" data-i="footTag"></p>
+        <h4 data-i="footLinks"></h4>
+        <ul>
+          <li><a href="#top" data-i="navHome"></a></li>
+          <li><a href="#about" data-i="navAbout"></a></li>
+          <li><a href="#expertise" data-i="navExpertise"></a></li>
+          <li><a href="#vision" data-i="navVision"></a></li>
+          <li><a href="#contact" data-i="navContact"></a></li>
+        </ul>
+      </div>
+      <div id="contact">
+        <h4 data-i="footContact"></h4>
+        <dl class="ftr-info" id="contactRows"></dl>
       </div>
     </div>
     <div class="ftr-btm">
       <p data-i="legal"></p>
-      <p data-i="disclaimer"></p>
+      <p class="ftr-legal"><a href="#privacy" data-i="privacyLink"></a><span aria-hidden="true">|</span><span data-i="termsLink"></span></p>
     </div>
   </div>
 </footer>
 
 <div class="mbar">
   <div class="mbar-in">
+    <a href="#consultation">
+      <svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7Zm7 0v4h4M10 12h6M10 16h4"/></svg>
+      <span data-i="ctaPrimary"></span>
+    </a>
     <a id="waBtn" href="#contact" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24"><path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.5 8.5 0 1 1 21 11.5Z"/></svg>
       <span data-i="mbarWhats"></span>
     </a>
-    <a href="#contact">
-      <svg viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6L16.5 13l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.7a2 2 0 0 1 2-2.2Z"/></svg>
-      <span data-i="mbarCall"></span>
-    </a>
-  </div>
-</div>
-
-<div class="ovl" id="ovl" hidden role="dialog" aria-modal="true" aria-labelledby="sheetH">
-  <div class="sheet">
-    <button class="x" id="sheetX" type="button" aria-label="Close">
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 5l14 14M19 5L5 19"/></svg>
-    </button>
-    <div class="ico" id="sheetIco"></div>
-    <h3 id="sheetH"></h3>
-    <p id="sheetP"></p>
-    <span class="tag" id="sheetTag"></span>
-    <a class="btn" href="#consult" id="sheetCta"></a>
   </div>
 </div>
 
@@ -615,232 +432,136 @@ var CONTACT = {phoneIntl:'',whatsIntl:'',whatsRaw:'',email:'',mapsUrl:'https://m
 
 /* ===== icon set ===== */
 var P = {
-  scales:'<path d="M12 4v16M6 20h12M12 7 5 10m7-3 7 3M5 10l-2.3 5a2.6 2.6 0 0 0 4.6 0Zm14 0-2.3 5a2.6 2.6 0 0 0 4.6 0Z"/>',
   building:'<path d="M4 21V6l7-3 7 3v15M4 21h16M9 21v-5h4v5M8 9h1m3 0h1m-5 3.5h1m3 0h1"/>',
-  doc:'<path d="M7 3h7l4 4v14H7Zm7 0v4h4M10 12h6M10 16h4"/>',
-  bank:'<path d="M3 9.5 12 4l9 5.5M5 10v8m5-8v8m4-8v8m5-8v8M3 21h18"/>',
-  people:'<path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm8.5.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5ZM3 20v-1.5A4.5 4.5 0 0 1 7.5 14h3a4.5 4.5 0 0 1 4.5 4.5V20m2-6a4 4 0 0 1 4 4v2"/>',
-  gavelless:'<path d="M4 20h16M7 16V9m5 7V5m5 11V11M5 8l2-3 2 3M10 4l2-3 2 3M15 10l2-3 2 3"/>',
-  home:'<path d="M3 10.5 12 3l9 7.5M5.5 9.5V21h13V9.5M10 21v-6h4v6"/>',
-  shield:'<path d="M12 3 5 6v6c0 4.2 2.9 7.8 7 9 4.1-1.2 7-4.8 7-9V6Zm-2.5 9 2 2 4-4"/>',
-  heart:'<path d="M12 20s-7-4.3-7-9a3.8 3.8 0 0 1 7-2 3.8 3.8 0 0 1 7 2c0 4.7-7 9-7 9Z"/>',
-  tree:'<path d="M12 21V9m0 0L8 5m4 4 4-4M12 15l-4-3m4 3 4-3M5 21h14"/>',
-  hands:'<path d="M3 13l4-4 3 3 4-4 3 3 4-4M3 19l4-4 3 3 4-4 3 3 4-4"/>',
   chat:'<path d="M4 5h16v10H9l-5 4Z M8 9h8M8 12h5"/>',
   court:'<path d="M3 20h18M5 20V9m4 11V9m6 11V9m4 11V9M2.5 9 12 4l9.5 5Z"/>',
-  dots:'<path d="M12 5h.01M12 12h.01M12 19h.01"/>',
-  key:'<path d="M14.5 6.5a4 4 0 1 1-3 6.8L5 20l-2-2 1-1-1-1 1.5-1.5L5 13l5-5a4 4 0 0 1 4.5-1.5Z"/>',
-  phone:'<path d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 6 6L16.5 13l4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 3.5 5.7a2 2 0 0 1 2-2.2Z"/>',
-  whats:'<path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.5 8.5 0 1 1 21 11.5Z"/>',
-  mail:'<path d="M3 6h18v12H3Zm0 .8 9 6.2 9-6.2"/>',
-  pin:'<path d="M12 21s7-6 7-11a7 7 0 1 0-14 0c0 5 7 11 7 11Zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>',
-  clock:'<path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-13v5l3.5 2"/>',
   seal:'<path d="M12 3 4.5 6.5v5c0 4.5 3.2 8.4 7.5 9.5 4.3-1.1 7.5-5 7.5-9.5v-5Z M9 11.5l2 2 4-4"/>',
-  badge:'<path d="M12 3a4.5 4.5 0 1 1 0 9 4.5 4.5 0 0 1 0-9Zm-3 8.5L7.5 21l4.5-2.5L16.5 21 15 11.5"/>',
-  reg:'<path d="M5 3h14v18H5Zm3 5h8M8 12h8M8 16h5"/>'
+  flip:'<path d="M4 10a8 8 0 0 1 13.7-3.7L20 8.5M20 4v4.5h-4.5M20 14a8 8 0 0 1-13.7 3.7L4 15.5M4 20v-4.5h4.5"/>',
+  whats:'<path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.5 8.5 0 1 1 21 11.5Z"/>'
 };
-function svgIco(k){return '<svg viewBox="0 0 24 24">'+(P[k]||P.doc)+'</svg>'}
-
-/* ===== services ===== */
-var SVC=[
- {k:"scales",t:"corp",ar:["القضايا التجارية","منازعات التعاملات والشراكات والأوراق التجارية أمام المحاكم التجارية."],en:["Commercial disputes","Disputes over dealings, partnerships and negotiable instruments before the commercial courts."]},
- {k:"building",t:"corp",ar:["قضايا الشركات والمنشآت","منازعات الشركاء وحقوق الحصص والحوكمة وتأسيس الكيانات."],en:["Corporate & entities","Shareholder disputes, equity rights, governance, and entity formation."]},
- {k:"doc",t:"corp",ar:["صياغة ومراجعة العقود","إعداد العقود والاتفاقيات ومراجعتها بما يحفظ مركز الموكّل قبل التوقيع."],en:["Contracts","Drafting and reviewing contracts, agreements and MOUs to protect the client's position before signature."]},
- {k:"bank",t:"both",ar:["المنازعات المصرفية والتمويلية","منازعات التمويل والضمانات والمديونيات أمام اللجان المصرفية."],en:["Banking & finance","Financing, security and debt disputes before the banking committees."]},
- {k:"people",t:"both",ar:["القضايا العمالية","منازعات العمل للطرفين: المستحقات ومكافأة نهاية الخدمة والفصل."],en:["Labour","Employment disputes for either side: entitlements, end-of-service and dismissal."]},
- {k:"key",t:"both",ar:["التنفيذ وتحصيل المطالبات","تنفيذ الأحكام والسندات التنفيذية ومتابعة الإجراء حتى استيفاء الحق."],en:["Enforcement & collection","Enforcing judgments and instruments, and following the process through to recovery."]},
- {k:"home",t:"both",ar:["القضايا العقارية","منازعات الملكية والحدود والإيجار والمقاولات."],en:["Real estate","Ownership, boundary, lease and construction disputes."]},
- {k:"court",t:"both",ar:["القضايا العامة والمدنية","المطالبات والمنازعات المدنية، من دراسة الموقف إلى صدور الحكم."],en:["Civil claims","Civil claims between individuals and entities, from assessment to judgment."]},
- {k:"shield",t:"both",ar:["القضايا الجنائية","الدفاع والترافع أمام المحاكم الجزائية وجهات التحقيق."],en:["Criminal defence","Defence before the criminal courts and investigation authorities, at every stage."]},
- {k:"heart",t:"ind",ar:["قضايا الأحوال الشخصية","الطلاق والخلع والحضانة والزيارة والنفقة، بخصوصية تامة."],en:["Family law","Divorce, khul', custody, visitation and maintenance, handled in confidence."]},
- {k:"tree",t:"ind",ar:["التركات وقسمتها","حصر الورثة والتركة، والقسمة الرضائية، ودعاوى القسمة عند الخلاف."],en:["Estates & inheritance","Determining heirs and assets, amicable division, and partition claims where heirs disagree."]},
- {k:"hands",t:"both",ar:["التسويات والصلح","التفاوض وإنهاء النزاع بالصلح، وتوثيق التسوية بصيغة قابلة للتنفيذ."],en:["Settlement & mediation","Negotiating an end to the dispute and recording it in an enforceable form."]},
- {k:"chat",t:"both",ar:["الاستشارات القانونية","رأي نظامي مكتوب أو شفهي، مع بيان الخيارات وأثر كل منها."],en:["Legal opinions","A written or oral opinion setting out the options and what each one leads to."]},
- {k:"gavelless",t:"both",ar:["الترافع والتمثيل","تمثيل الموكّلين أمام المحاكم بدرجاتها وأمام اللجان المختصة."],en:["Litigation","Representation before the courts at every level and before the specialist committees."]},
- {k:"seal",t:"both",ar:["خدمات التوثيق","خدمات التوثيق للأفراد والشركات، بعناية بالمستندات ومتطلبات كل معاملة."],en:["Notarization services","Notarization services for individuals and companies, with careful attention to documents and each transaction’s requirements."]},
- {k:"home",t:"both",ar:["التسجيل العيني للعقار","خدمات التسجيل العيني للعقار ومتابعة المستندات والإجراءات المتعلقة بالتسجيل."],en:["Real estate title registration","Real estate title registration services and assistance with the related documents and procedures."]},
- {k:"dots",t:"both",ar:["أخرى","إذا لم تجد مسألتك أعلاه، تواصل معنا ونوضّح لك المسار المناسب."],en:["Other","If your matter isn't listed, contact us and we'll tell you the right route for it."]}
-];
-
+function svgIco(k){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+P[k]+'</svg>'}
 /* ===== copy ===== */
 var T={
 ar:{
- dir:"rtl",langBtn:"EN",
- brandShort:"محمد السبعان للمحاماة",
- brandFull:"محمد السبعان للمحاماة والاستشارات القانونية",
- navAbout:"عن المكتب",navSvc:"خدماتنا",navVal:"قيمنا",navCred:"التراخيص",navContact:"تواصل معنا",
- heroH:"حين تتعقّد المسائل، يبدأ الوضوح.",
- heroSub:"مرافعة واستشارات أمام المحاكم واللجان، بمعرفة دقيقة بالأنظمة السعودية.",
- ctaPrimary:"اطلب استشارة",ctaSecondary:"تصفّح الخدمات",scrollCue:"تصفّح",
- aboutEyebrow:"عن المكتب",aboutH:"خبرة نظامية تقرأ المسألة في سياقها",
- aboutP1:"مكتب المحامي محمد السبعان مكتب مهني سعودي، يمثّل موكّليه أمام الجهات القضائية وشبه القضائية، ويقدّم لهم المشورة النظامية في مسائلهم التجارية والمدنية والأسرية.",
- aboutP2:"نبدأ من دراسة الموقف النظامي للموكّل قبل اتخاذ أي إجراء، ليكون القرار مبنيًّا على تقدير واضح للمسار ونتائجه، لا على افتراض.",
- aboutAlt:"استقبال المكتب بهوية محمد السبعان",
- corpAlt:"مكتب محمد السبعان للمحاماة",
- indAlt:"مكتب المحامي وقلم فوق مذكرة، وميزان العدل في الخلفية",
- svcEyebrow:"خدماتنا القانونية",svcH:"خدمات متكاملة للشركات والأفراد",
- svcLede:"من الاستشارة الأولى إلى التمثيل أمام الجهات القضائية.",
- chipAll:"الكل",chipCorp:"الشركات",chipInd:"الأفراد",cardMore:"تفاصيل",
- corpLabel:"للشركات",corpH:"القانون جزء من قرارك التجاري",
- corpBody:"نساند الشركات والمنشآت في منازعاتها وعقودها وقراراتها النظامية، ونمثّلها أمام الجهات القضائية واللجان المختصة.",
- corpCta:"خدمات الشركات",
+ dir:"rtl",langBtn:"EN",title:"محمد السبعان للمحاماة",consultTitle:"اطلب استشارتك القانونية | محمد السبعان للمحاماة",
+ navHome:"الرئيسية",navAbout:"من نحن",navExpertise:"اختصاصاتنا القانونية",navVision:"رؤيتنا",navContact:"تواصل معنا",
+ ctaPrimary:"اطلب استشارتك القانونية",
+ visionH:"رؤيتنا",
+ visionLine:"تسخير المعرفة القانونية لحماية الحقوق، وتمكين الأفراد من الوصول إلى العدالة بثقة ووعي، وتقديم حلول قانونية تصنع فارقاً حقيقياً في حياتهم.",
+ expertiseH:"خبراتنا القانونية",
+ expertise:[["chat","الاستشارات القانونية","لفهم الموقف القانوني واتخاذ القرارات الصحيحة."],
+            ["building","خدمات الشركات والأعمال","لتأسيس الشركات وتنظيم أعمالها وحماية مصالحها القانونية."],
+            ["court","التقاضي والتمثيل القانوني","للمطالبة بالحقوق والدفاع عن المصالح أمام الجهات القضائية."],
+            ["seal","التوثيق والتسجيل العقاري","لتوثيق التصرفات العقارية وحفظ الحقوق وتسجيل الملكيات."]],
+ corpLabel:"للشركات",indLabel:"للأفراد",flipHint:"الخدمات",
  corpList:["منازعات الشركاء وحقوق الحصص","الحوكمة وتنظيم العلاقة داخل المنشأة","تأسيس الكيانات والتراخيص","الاستشارات النظامية المستمرة"],
- indLabel:"للأفراد",indH:"قضاياك الشخصية تستحق العناية نفسها",
- indBody:"نمثّل الأفراد ونقدّم لهم المشورة في المسائل التي تمسّ أسرهم وممتلكاتهم وحقوقهم، بالخصوصية والجديّة نفسها.",
  indList:["قضايا الأحوال الشخصية","التركات وقسمتها","القضايا العقارية","التنفيذ وتحصيل المطالبات","القضايا الجنائية"],
- valEyebrow:"قيمنا",valH:"ثلاثة التزامات تحكم طريقة عملنا",
- vals:[["٠١","السرية","ما يصلنا من موكّلينا أمانة، نتعامل معه بسرية تامة في كل مرحلة."],
-       ["٠٢","الخبرة","معرفة دقيقة بالأنظمة والبيئة القضائية في المملكة، ومنهج عمل منضبط."],
-       ["٠٣","الوضوح","نبيّن المسار واحتمالاته منذ اللقاء الأول، دون وعود."]],
- visionLabel:"رؤيتنا",visionLine:"أن نكون المرجع القانوني الموثوق لعملائنا، بما نقدّمه من خبرة متخصصة وحلول متكاملة تحفظ حقوقهم وتصون مصالحهم. نلتزم بمعايير مهنية راسخة تستند إلى أحكام الشريعة الإسلامية وتواكب أحدث الأنظمة والتشريعات، لنكون شريكًا في نجاح أعمالهم واستدامتها.",
- visionAlt:"استقبال مكتب محمد السبعان وشعار المكتب",
- credEyebrow:"التراخيص والاعتمادات",credH:"التراخيص والاعتمادات المهنية",
- credLede:"تُضاف أرقام التراخيص والاعتمادات بعد اعتماد بيانات المكتب الرسمية.",
- creds:[["badge","ترخيص محاماة رقم —","وزارة العدل"],
-        ["seal","عضوية الهيئة السعودية للمحامين رقم —","الهيئة السعودية للمحامين"],
-        ["seal","ترخيص توثيق رقم —","رقم الترخيص يضاف لاحقًا"],
-        ["home","ترخيص مسجل عيني للعقار رقم —","رقم الترخيص يضاف لاحقًا"]],
- formEyebrow:"اطلب استشارة",formH:"ابدأ بموقف نظامي واضح",
- formLede:"شاركنا تفاصيل طلبك باختصار، وحدّد المجال الأقرب إليه.",
- fName:"الاسم",fMobile:"رقم الجوال",fEmail:"البريد الإلكتروني (اختياري)",fService:"نوع الخدمة",
- fDetails:"نبذة عن الطلب",fConsent:"أوافق على حفظ تفاصيل طلبي لدى المكتب ومشاركتها عبر واتساب للتواصل بشأن الاستشارة.",
- fSubmit:"متابعة عبر واتساب",fPick:"اختر المجال",
+ careH:"حقوقك تستحق العناية.",
+ careP:"نضع معرفتنا القانونية في خدمتك، ونسعى إلى تقديم الدعم الذي يساعدك على فهم حقوقك وحمايتها.",
+ careAlt:"استقبال مكتب محمد السبعان وشعار المكتب",
+ consultH:"ابدأ خطوتك القانونية بثقة",
+ consultP1:"لكل مسألة قانونية تفاصيلها، ونحن هنا لفهم احتياجك وتقديم التوجيه القانوني المناسب وفق الأنظمة والتشريعات المعمول بها.",
+ consultP2:"اطلب استشارتك القانونية، ودعنا نساعدك على اتخاذ قرار مبني على معرفة واضحة.",
+ formH:"بيانات طلب الاستشارة",
+ formLede:"نرجو تعبئة البيانات التالية لنتمكن من فهم طلبك والتواصل معك.",
+ fName:"الاسم الكامل",fMobile:"رقم الجوال",fEmail:"البريد الإلكتروني",fService:"نوع الاستشارة",fPick:"اختر نوع الاستشارة",
+ types:["استشارات قانونية عامة","قضايا التقاضي والتمثيل القانوني","خدمات الشركات والأعمال","التوثيق والخدمات العقارية","أخرى"],
+ fSubject:"موضوع الاستشارة",fDetails:"وصف مختصر للموضوع",fFiles:"إرفاق المستندات (اختياري)",
+ filePick:"اختر الملفات",fileHint:"PDF أو Word أو صور، حتى ٣ ملفات، ٥ ميجابايت لكل ملف",fileRemove:"إزالة",fileCount:"عدد المرفقات",
+ fConsent:"أوافق على حفظ تفاصيل طلبي لدى المكتب ومشاركتها عبر واتساب للتواصل بشأن الاستشارة.",
+ fSubmit:"إرسال طلب الاستشارة",fSending:"جارٍ الإرسال…",
  fNote:"ستفتح محادثة واتساب لمراجعة طلبك وإرساله. يُحفظ الطلب لدى المكتب للمتابعة.",
- eName:"اكتب اسمك",eMobile:"اكتب رقم جوال صحيحًا، مثل 05XXXXXXXX",eEmail:"اكتب بريدًا إلكترونيًا صحيحًا",
- eService:"اختر المجال الأقرب لطلبك",eConsent:"الموافقة مطلوبة لإرسال الطلب",
- ok:"راجع طلبك وأرسله في واتساب. إذا لم تُفتح المحادثة، استخدم الرابط أدناه.",
- no:"تعذّر إرسال الطلب. تواصل معنا عبر واتساب.",
- contactEyebrow:"تواصل معنا",contactH:"المكتب في خدمتك",
- rowPhone:"الهاتف",rowWhats:"راسلنا على واتساب",rowEmail:"البريد الإلكتروني",
- rowLocation:"موقع المكتب — الاتجاهات",rowHours:"ساعات العمل",
- hours:"الأحد – الخميس، ٩ صباحًا – ٥ مساءً",copy:"نسخ",copied:"تم النسخ",
- footTag:"مكتب مهني سعودي للمحاماة والاستشارات القانونية، يخدم الأفراد والشركات.",
- footCol1:"خدماتنا القانونية",footCol2:"التواصل",footCol3:"الموقع",
- legal:"© ٢٠٢٦ مكتب المحامي محمد السبعان للمحاماة والاستشارات القانونية. جميع الحقوق محفوظة.",
- disclaimer:"ما يرد في هذا الموقع للتعريف بالمكتب ولا يعدّ استشارة قانونية.",
- mbarWhats:"اطلب استشارة",mbarCall:"تواصل معنا",
- waText:"هلابك في مكتب محمد السبعان للأستشارات القانونية\nكيف اقدر اساعدك",mapOpen:"افتح الموقع في خرائط Google",videoPause:"إيقاف الفيديو",videoPlay:"تشغيل الفيديو"
+ eName:"اكتب اسمك الكامل",eMobile:"اكتب رقم جوال صحيحًا، مثل 05XXXXXXXX",eEmail:"اكتب بريدًا إلكترونيًا صحيحًا، مثل name@example.com",
+ eService:"اختر نوع الاستشارة",eSubject:"اكتب موضوع الاستشارة",eDetails:"اكتب وصفًا مختصرًا للموضوع",eConsent:"الموافقة مطلوبة لإرسال الطلب",
+ eFileType:"أرفق ملف PDF أو Word أو صورة بصيغة JPG أو PNG",eFileSize:"اختر ملفًا لا يتجاوز ٥ ميجابايت",eFileCount:"يمكن إرفاق ٣ ملفات كحد أقصى",eFileRead:"تعذّرت قراءة أحد المرفقات. أزله ثم اختره مرة أخرى.",
+ privacyH:"خصوصيتك محل اهتمامنا",
+ privacyP:"نحرص على التعامل مع بياناتك ومعلوماتك بسرية ومهنية، وفق الأنظمة والالتزامات المهنية ذات الصلة.",
+ closing:"يسعدنا أن نكون شريكك في فهم حقوقك واتخاذ خطواتك القانونية بثقة.",
+ footLinks:"روابط مهمة",footContact:"معلومات التواصل",rowPhone:"رقم الهاتف",rowEmail:"البريد الإلكتروني",rowAddress:"العنوان",rowSocial:"حسابات التواصل الاجتماعي",
+ pending:"يُضاف قريبًا",whatsapp:"واتساب",
+ legal:"جميع الحقوق محفوظة © 2026",privacyLink:"سياسة الخصوصية",termsLink:"الشروط والأحكام",
+ mbarWhats:"واتساب",
+ waText:"اهلاً بك وشكراً لتواصلك مع مكتب المحامي والموثق: محمد السبعان ⚖️\nيسعدني خدمتك وفق الاتي:- ضع استشارتك او استفسارك كاملة دون نقص وسيتم الرد عليها بمشيئة الله",videoPause:"إيقاف الفيديو",videoPlay:"تشغيل الفيديو"
 },
 en:{
- dir:"ltr",langBtn:"ع",
- brandShort:"Mohammed Al Sabaan",
- brandFull:"Mohammed Al-Sabaan Law Firm & Legal Consultancy",
- navAbout:"The firm",navSvc:"Practice areas",navVal:"Values",navCred:"Licences",navContact:"Contact",
- heroH:"When matters get complex, clarity begins.",
- heroSub:"Representation and advice before the Saudi courts and committees, grounded in the regulations as they are applied.",
- ctaPrimary:"Request a consultation",ctaSecondary:"Our practice areas",scrollCue:"Scroll",
- aboutEyebrow:"The firm",aboutH:"Legal experience that reads the matter in context",
- aboutP1:"Mohammed Al-Sabaan Law Firm is a Saudi professional practice. It represents clients before the courts and quasi-judicial committees, and advises them on commercial, civil and family matters.",
- aboutP2:"We start by establishing where the client actually stands under the regulations, before any step is taken — so the decision rests on a clear reading of the route and its likely outcome rather than on assumption.",
- aboutAlt:"The reception with Mohammed Al Sabaan branding",
- corpAlt:"Mohammed Al Sabaan law office desk",
- indAlt:"A fountain pen resting on a memorandum, scales of justice behind",
- svcEyebrow:"Our legal services",svcH:"Full-service advice for companies and individuals",
- svcLede:"From the first consultation to judgment.",
- chipAll:"All",chipCorp:"Corporate",chipInd:"Individuals",cardMore:"Details",
- corpLabel:"For companies",corpH:"Law belongs in the commercial decision",
- corpBody:"We support companies in their disputes, their contracts and their regulatory decisions, and represent them before the courts and the specialist committees.",
- corpCta:"Corporate services",
+ dir:"ltr",langBtn:"ع",title:"Mohammed Al-Sabaan Law Firm",consultTitle:"Request your legal consultation | Mohammed Al-Sabaan Law Firm",
+ navHome:"Home",navAbout:"About us",navExpertise:"Our legal specialisations",navVision:"Our vision",navContact:"Contact us",
+ ctaPrimary:"Request your legal consultation",
+ visionH:"Our vision",
+ visionLine:"Harnessing legal knowledge to protect rights, empowering individuals to reach justice with confidence and awareness, and delivering legal solutions that make a real difference in their lives.",
+ expertiseH:"Our legal expertise",
+ expertise:[["chat","Legal consultations","To understand the legal position and make the right decisions."],
+            ["building","Corporate and business services","To establish companies, organise their operations and protect their legal interests."],
+            ["court","Litigation and legal representation","To claim rights and defend interests before the judicial authorities."],
+            ["seal","Notarization and real estate registration","To notarize real estate transactions, preserve rights and register ownership."]],
+ corpLabel:"For companies",indLabel:"For individuals",flipHint:"Services",
  corpList:["Shareholder disputes and equity rights","Governance and internal relations","Entity formation and licensing","Ongoing regulatory advice"],
- indLabel:"For individuals",indH:"Your personal matters get the same care",
- indBody:"We represent and advise individuals on the matters that touch their families, their property and their rights — with the same confidentiality and seriousness.",
  indList:["Family law","Estates & inheritance","Real estate","Enforcement & collection","Criminal defence"],
- valEyebrow:"Our values",valH:"Three commitments that govern how we work",
- vals:[["01","Confidentiality","What a client tells us is held in trust, at every stage of the matter."],
-       ["02","Experience","Close knowledge of the regulations and of how they are applied in practice in the Kingdom."],
-       ["03","Clarity","We set out the route and its likely outcomes from the first meeting — without promises."]],
- visionLabel:"Our vision",visionLine:"To be the trusted legal authority for our clients, delivering specialized expertise and integrated solutions that protect their rights and safeguard their interests. We uphold the highest professional standards, grounded in Islamic Shari’ah and aligned with the latest laws and regulations, to serve as a partner in the success and sustainability of their business.",
- visionAlt:"Reception and branding of Mohammed Al Sabaan law office",
- credEyebrow:"Licences & accreditations",credH:"Professional licences & accreditations",
- credLede:"Licence and membership numbers will be added once the firm’s official details are confirmed.",
- creds:[["badge","Practising licence no. —","Ministry of Justice"],
-        ["seal","Saudi Bar Association membership no. —","Saudi Bar Association"],
-        ["seal","Notarization licence no. —","Licence number pending"],
-        ["home","Real estate title registrar licence no. —","Licence number pending"]],
- formEyebrow:"Request a consultation",formH:"Start from a clear legal position",
- formLede:"Tell us briefly what you need and pick the closest area.",
- fName:"Full name",fMobile:"Mobile number",fEmail:"Email (optional)",fService:"Type of matter",
- fDetails:"Brief description",fConsent:"I agree to the office storing my request and sharing these details through WhatsApp for this consultation.",
- fSubmit:"Continue on WhatsApp",fPick:"Choose an area",
+ careH:"Your rights deserve care.",
+ careP:"We put our legal knowledge at your service, and work to give you the support that helps you understand and protect your rights.",
+ careAlt:"Reception and branding of Mohammed Al Sabaan law office",
+ consultH:"Take your legal step with confidence",
+ consultP1:"Every legal matter has its own details. We are here to understand what you need and give you the right legal guidance under the applicable laws and regulations.",
+ consultP2:"Request your legal consultation, and let us help you reach a decision built on clear knowledge.",
+ formH:"Consultation request details",
+ formLede:"Please fill in the details below so we can understand your request and contact you.",
+ fName:"Full name",fMobile:"Mobile number",fEmail:"Email",fService:"Type of consultation",fPick:"Choose the type of consultation",
+ types:["General legal consultations","Litigation and legal representation","Corporate and business services","Notarization and real estate services","Other"],
+ fSubject:"Consultation subject",fDetails:"Brief description of the subject",fFiles:"Attach documents (optional)",
+ filePick:"Choose files",fileHint:"PDF, Word or images, up to 3 files, 5 MB each",fileRemove:"Remove",fileCount:"Attachments",
+ fConsent:"I agree to the office storing my request and sharing these details through WhatsApp for this consultation.",
+ fSubmit:"Send consultation request",fSending:"Sending…",
  fNote:"WhatsApp opens so you can review and send your request. Your request is saved by the office for follow-up.",
- eName:"Enter your name",eMobile:"Enter a valid Saudi mobile number",eEmail:"Enter a valid email address",
- eService:"Choose the closest area",eConsent:"Consent is required to submit",
- ok:"Review and send your request in WhatsApp. If the chat did not open, use the link below.",
- no:"We couldn't send your request — please reach us on WhatsApp.",
- contactEyebrow:"Contact us",contactH:"The firm is at your service",
- rowPhone:"Phone",rowWhats:"Message us on WhatsApp",rowEmail:"Email",
- rowLocation:"Office location — Directions",rowHours:"Working hours",
- hours:"Sunday–Thursday, 9am–5pm",copy:"Copy",copied:"Copied",
- footTag:"A Saudi law and legal consultancy practice serving individuals and companies.",
- footCol1:"Our services",footCol2:"Contact",footCol3:"Location",
- legal:"© 2026 Mohammed Al-Sabaan Law Firm & Legal Consultancy. All rights reserved.",
- disclaimer:"This site is introductory and does not constitute legal advice.",
- mbarWhats:"Consultation",mbarCall:"Contact",
- waText:"Welcome to Mohammed alsabaan law office\nhow can i assist you",mapOpen:"Open in Google Maps",videoPause:"Pause video",videoPlay:"Play video"
+ eName:"Enter your full name",eMobile:"Enter a valid Saudi mobile number, such as 05XXXXXXXX",eEmail:"Enter a valid email address, such as name@example.com",
+ eService:"Choose the type of consultation",eSubject:"Enter the consultation subject",eDetails:"Enter a brief description",eConsent:"Consent is required to submit",
+ eFileType:"Attach a PDF, Word file, or a JPG or PNG image",eFileSize:"Choose a file of 5 MB or less",eFileCount:"You can attach up to 3 files",eFileRead:"One attachment could not be read. Remove it and choose it again.",
+ privacyH:"Your privacy matters to us",
+ privacyP:"We handle your data and information confidentially and professionally, in line with the relevant regulations and professional obligations.",
+ closing:"We look forward to being your partner in understanding your rights and taking your legal steps with confidence.",
+ footLinks:"Important links",footContact:"Contact information",rowPhone:"Phone number",rowEmail:"Email",rowAddress:"Address",rowSocial:"Social media accounts",
+ pending:"Coming soon",whatsapp:"WhatsApp",
+ legal:"All rights reserved © 2026",privacyLink:"Privacy policy",termsLink:"Terms and conditions",
+ mbarWhats:"WhatsApp",
+ waText:"Welcome, and thank you for contacting the office of lawyer and notary Mohammed Al Sabaan ⚖️\nI am glad to assist you as follows: please send your full consultation or enquiry, with nothing left out, and it will be answered, God willing.",videoPause:"Pause video",videoPlay:"Play video"
 }};
-
-/* ===== brand mark: fanned leaves of hairlines ===== */
-document.querySelectorAll('[data-mark]').forEach(function(el){
-  el.innerHTML='<img src="assets/logo-mark.png" alt="" width="36" height="58">';
-});
-
 /* ===== i18n ===== */
-var L='ar', t=T.ar, filter='all';
+var L='ar', t=T.ar;
 try{if(localStorage.getItem('alsabaan-language')==='en')L='en'}catch(e){}
 var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-
-function buildServices(){
-  var g=$('#grid');
-  g.innerHTML = SVC.map(function(s,i){
-    var c = L==='ar'?s.ar:s.en;
-    return '<button class="card" type="button" data-i-idx="'+i+'" data-t="'+s.t+'">'+
-      '<span class="ico">'+svgIco(s.k)+'</span>'+
-      '<h3>'+c[0]+'</h3><p>'+c[1]+'</p>'+
-      '<span class="more">'+t.cardMore+' <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" style="transform:scaleX('+(L==='ar'?-1:1)+')"><path d="M5 12h13m-5-5 5 5-5 5"/></svg></span>'+
-      '</button>';
+function buildExpertise(){
+  $('#xpList').innerHTML=t.expertise.map(function(x){
+    return '<li><span class="ico">'+svgIco(x[0])+'</span><h3>'+x[1]+'</h3><p>'+x[2]+'</p></li>';
   }).join('');
-  applyFilter();
-  var sel=$('#f-service');
-  sel.innerHTML='<option value="">'+t.fPick+'</option>'+SVC.map(function(s){
-    var n=L==='ar'?s.ar[0]:s.en[0];return '<option value="'+n+'">'+n+'</option>';
-  }).join('');
+}
+function flipCard(key,label,list,image){
+  return '<button class="flip" type="button" data-flip="'+key+'" aria-expanded="false">'+
+    '<span class="flip-in">'+
+      '<span class="flip-face flip-front"><img src="assets/'+image+'" alt="" loading="lazy">'+
+        '<span class="flip-label"><b>'+label+'</b><span class="flip-hint">'+t.flipHint+' '+svgIco('flip')+'</span></span></span>'+
+      '<span class="flip-face flip-back" aria-hidden="true"><b>'+label+'</b>'+
+        list.map(function(x){return '<span class="flip-item">'+x+'</span>'}).join('')+'</span>'+
+    '</span></button>';
+}
+function buildAudience(){
+  $('#audience').innerHTML=flipCard('corp',t.corpLabel,t.corpList,'office-desk.jpg')+flipCard('ind',t.indLabel,t.indList,'legal-details.jpg');
+}
+function buildTypes(){
+  var sel=$('#f-service'),index=Math.max(sel.selectedIndex,0);
+  sel.innerHTML='<option value="">'+t.fPick+'</option>'+t.types.map(function(n){return '<option value="'+n+'">'+n+'</option>'}).join('');
+  sel.selectedIndex=index;
   syncServicePicker();
-}
-function buildChips(){
-  var defs=[['all',t.chipAll],['corp',t.chipCorp],['ind',t.chipInd]];
-  $('#chips').innerHTML=defs.map(function(d){
-    return '<button class="chip" type="button" data-fl="'+d[0]+'" aria-pressed="'+(filter===d[0])+'">'+d[1]+'</button>';
-  }).join('');
-}
-function applyFilter(){
-  $$('#grid .card').forEach(function(c){
-    var tt=c.dataset.t;
-    c.hidden = !(filter==='all' || tt===filter || tt==='both');
-  });
-}
-function buildLists(){
-  $('#corpList').innerHTML=t.corpList.map(function(x){return '<li>'+x+'</li>'}).join('');
-  $('#indList').innerHTML=t.indList.map(function(x){return '<li>'+x+'</li>'}).join('');
-  $('#vals').innerHTML=t.vals.map(function(v){
-    return '<div class="val"><span class="n">'+v[0]+'</span><h3>'+v[1]+'</h3><p>'+v[2]+'</p></div>';
-  }).join('');
-  $('#creds').innerHTML=t.creds.map(function(c){
-    return '<div class="cred"><span class="ico">'+svgIco(c[0])+'</span><span>'+c[1]+'</span><em>'+c[2]+'</em></div>';
-  }).join('');
 }
 function escapeText(value){return String(value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
 function buildContact(){
-  var pending=L==='ar'?'تُضاف بيانات التواصل الرسمية قريبًا':'Official contact details will be added soon';
-  var rows=[['mail',t.rowEmail,CONTACT.email||(L==='ar'?'يُضاف قريبًا':'Coming soon'),CONTACT.email?'mailto:'+CONTACT.email:'',CONTACT.email?1:0],['pin',t.rowLocation,L==='ar'?CONTACT.addrAr:CONTACT.addrEn,CONTACT.mapsUrl,0],['clock',t.rowHours,t.hours,'',0]];
-  if(CONTACT.whatsRaw)rows.unshift(['phone',t.rowPhone,CONTACT.phoneIntl,'tel:+'+CONTACT.whatsRaw,1],['whats',t.rowWhats,CONTACT.whatsIntl,waLink(),1]);
-  $('#contactRows').innerHTML=rows.map(function(r){
-    r[2]=escapeText(r[2]);
-    var val = r[4] ? '<a class="v" dir="ltr" href="'+r[3]+'"'+(r[0]==='whats'?' target="_blank" rel="noopener"':'')+'>'+r[2]+'</a>'
-                   : (r[3]? '<a class="v" href="'+r[3]+'" target="_blank" rel="noopener">'+r[2]+'</a>' : '<span class="v">'+r[2]+'</span>');
-    return '<div class="crow"><span class="ico">'+svgIco(r[0])+'</span><span style="min-width:0"><span class="k">'+r[1]+'</span>'+val+'</span>'+
-      (r[4]?'<button class="copy" type="button" data-copy="'+r[2]+'">'+t.copy+'</button>':'')+'</div>';
-  }).join('');
+  var address=escapeText(L==='ar'?CONTACT.addrAr:CONTACT.addrEn),pending='<span class="pending">'+t.pending+'</span>';
+  var rows=[
+    [t.rowPhone,CONTACT.whatsRaw?'<a dir="ltr" href="tel:+'+CONTACT.whatsRaw+'">'+CONTACT.phoneIntl+'</a>':pending],
+    [t.rowEmail,CONTACT.email?'<a dir="ltr" href="mailto:'+escapeText(CONTACT.email)+'">'+escapeText(CONTACT.email)+'</a>':pending],
+    [t.rowAddress,'<a href="'+escapeText(CONTACT.mapsUrl)+'" target="_blank" rel="noopener noreferrer">'+address+'</a>'],
+    [t.rowSocial,CONTACT.whatsRaw?'<a class="social" href="'+waLink()+'" target="_blank" rel="noopener noreferrer">'+svgIco('whats')+t.whatsapp+'</a>':pending]
+  ];
+  $('#contactRows').innerHTML=rows.map(function(r){return '<div><dt>'+r[0]+'</dt><dd>'+r[1]+'</dd></div>'}).join('');
 }
 function waLink(service,details){
   if(!CONTACT.whatsRaw)return '#contact';
@@ -850,8 +571,7 @@ function waLink(service,details){
   return 'https://wa.me/'+CONTACT.whatsRaw+'?text='+encodeURIComponent(text);
 }
 function refreshWhatsAppLinks(){
-  $$('a[data-i="ctaPrimary"],#waBtn').forEach(function(a){a.href=waLink();a.target='_blank';a.rel='noopener noreferrer'});
-  var call=$('.mbar-in a:last-child');call.href=CONTACT.whatsRaw?'tel:+'+CONTACT.whatsRaw:'#contact';
+  var a=$('#waBtn');a.href=waLink();a.target='_blank';a.rel='noopener noreferrer';
 }
 function applyContactConfig(config){
   if(!config||!/^\d{8,15}$/.test(config.whatsapp||''))return;
@@ -859,28 +579,17 @@ function applyContactConfig(config){
   CONTACT.addrAr=config.address_ar||CONTACT.addrAr;CONTACT.addrEn=config.address_en||CONTACT.addrEn;
   if(config.maps_url)CONTACT.mapsUrl=config.maps_url;
   if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email||''))CONTACT.email=config.email;
-  if(config.hours_ar)T.ar.hours=config.hours_ar;if(config.hours_en)T.en.hours=config.hours_en;
-  if(Number.isFinite(config.latitude)&&Number.isFinite(config.longitude)){
-    var mapSrc='https://maps.google.com/maps?q='+config.latitude+','+config.longitude+'&z=16&output=embed';
-    var map=$('.map-panel iframe');if(map.getAttribute('src')!==mapSrc)map.src=mapSrc;
-  }
-  $('.map-link').href=CONTACT.mapsUrl;
-  $$('[data-i="hours"]').forEach(function(el){el.textContent=t.hours});
   refreshWhatsAppLinks();buildContact();
 }
 window.addEventListener('message',function(event){
   if(event.source!==window.parent||!event.data||event.data.type!=='streamlit:render')return;
   var args=event.data.args||{};applyContactConfig(args.contact);receiveHost(args);
 });
-
-
 function render(){
   t=T[L];
   var r=document.documentElement;
   r.lang=L; r.dir=t.dir;
-  r.style.setProperty('--cue-origin', t.dir==='rtl'?'right':'left');
   $$('[data-i]').forEach(function(el){ var v=t[el.dataset.i]; if(typeof v==='string') el.textContent=v; });
-  $('[data-i="heroH"]').innerHTML=L==='ar'?'حين تتعقّد المسائل،<br>يبدأ <span class="hero-accent">الوضوح.</span>':'When matters get complex,<br><span class="hero-accent">clarity begins.</span>';
   $('#lang').textContent=t.langBtn;
   $('.menu-language').textContent=t.langBtn;
   $('.menu-label').textContent=L==='ar'?'القائمة':'Menu';
@@ -889,65 +598,23 @@ function render(){
   $('#nav').setAttribute('aria-label',L==='ar'?'القائمة الرئيسية':'Main menu');
   $('.menu-links').setAttribute('aria-label',L==='ar'?'القائمة الرئيسية':'Main menu');
   $('#lang').setAttribute('aria-label', L==='ar'?'Switch to English':'التبديل إلى العربية');
-  $('#aboutImg').alt=t.aboutAlt;
-  $('#visionImg').alt=t.visionAlt;
-  $('#corpImg').alt=t.corpAlt;
-  $('#indImg').alt=t.indAlt;
+  $('#careImg').alt=t.careAlt;
   refreshWhatsAppLinks(); updateVideoControl();
-  document.title = L==='ar' ? 'محمد السبعان للمحاماة' : 'Mohammed Al-Sabaan Law Firm';
-  buildChips(); buildServices(); buildLists(); buildContact();
+  updateTitle();
+  buildExpertise(); buildAudience(); buildTypes(); buildContact(); buildFiles();
   clearErrors();
 }
-
+function updateTitle(){document.title=$('#consultation').hidden?t.title:t.consultTitle}
 /* ===== interactions ===== */
 $('#lang').addEventListener('click',function(){ L = L==='ar'?'en':'ar'; try{localStorage.setItem('alsabaan-language',L)}catch(e){} render(); });
-
-$('#chips').addEventListener('click',function(e){
-  var b=e.target.closest('.chip'); if(!b) return;
-  filter=b.dataset.fl;
-  $$('#chips .chip').forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.fl===filter))});
-  applyFilter();
+/* Each card turns on press, so touch, keyboard and mouse share one behaviour. */
+$('#audience').addEventListener('click',function(e){
+  var card=e.target.closest('.flip'); if(!card) return;
+  var open=card.getAttribute('aria-expanded')!=='true';
+  card.setAttribute('aria-expanded',String(open));
+  $('.flip-front',card).setAttribute('aria-hidden',String(open));
+  $('.flip-back',card).setAttribute('aria-hidden',String(!open));
 });
-
-var ovl=$('#ovl'), lastFocus=null;
-$('#grid').addEventListener('click',function(e){
-  var c=e.target.closest('.card'); if(!c) return;
-  var s=SVC[+c.dataset.iIdx], cp = L==='ar'?s.ar:s.en;
-  lastFocus=c;
-  $('#f-service').value=cp[0];syncServicePicker();
-  $('#sheetIco').innerHTML=svgIco(s.k);
-  $('#sheetH').textContent=cp[0];
-  $('#sheetP').textContent=cp[1];
-  $('#sheetTag').textContent = s.t==='corp'?t.chipCorp : s.t==='ind'?t.chipInd : t.chipAll;
-  $('#sheetCta').textContent=t.ctaPrimary;
-  $('#sheetCta').href=waLink(cp[0]);$('#sheetCta').target='_blank';$('#sheetCta').rel='noopener noreferrer';
-  ovl.hidden=false; document.body.style.overflow='hidden';
-  $('#sheetX').focus();
-});
-function closeSheet(){ ovl.hidden=true; document.body.style.overflow=''; if(lastFocus) lastFocus.focus(); }
-$('#sheetX').addEventListener('click',closeSheet);
-$('#sheetCta').addEventListener('click',function(){ /* closed after the request is saved */ });
-ovl.addEventListener('click',function(e){ if(e.target===ovl) closeSheet(); });
-document.addEventListener('keydown',function(e){
-  if(ovl.hidden)return;
-  if(e.key==='Escape')closeSheet();
-  if(e.key==='Tab'){
-    var first=$('#sheetX'),last=$('#sheetCta');
-    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}
-    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
-  }
-});
-
-document.addEventListener('click',function(e){
-  var b=e.target.closest('.copy'); if(!b) return;
-  var txt=b.dataset.copy, done=function(){ b.textContent=t.copied; setTimeout(function(){b.textContent=t.copy},1800) };
-  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done).catch(select) } else select();
-  function select(){
-    var r=document.createRange(); r.selectNodeContents(b.closest('.crow').querySelector('.v'));
-    var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r); done();
-  }
-});
-
 var burger=$('#burger'), nav=$('#nav');
 function setMenu(open,restoreFocus){
   nav.hidden=!open;
@@ -970,26 +637,36 @@ document.addEventListener('keydown',function(e){
     else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}
   }
 });
-
 var hdr=$('#hdr');
 function onScroll(){ hdr.classList.toggle('solid', window.scrollY>40) }
 window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
-
-$$('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    var id=a.getAttribute('href'); if(!id||!id.startsWith('#')||id==='#'||id.length<2) return;
-    var el=document.querySelector(id); if(!el) return;
-    e.preventDefault();
-    var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    var y=el.getBoundingClientRect().top+window.scrollY-$('#hdr').getBoundingClientRect().height-18;
-    var destination=el.querySelector('h2')||el;
-    destination.setAttribute('tabindex','-1');destination.focus({preventScroll:true});
-    window.scrollTo({top:y,behavior:reduce?'auto':'smooth'});
-    if(a.dataset.track){ filter=a.dataset.track==='corporate'?'corp':'all';
-      $$('#chips .chip').forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.fl===filter))}); applyFilter(); }
-  });
+/* The consultation page shares this document so the Streamlit connection survives navigation. */
+var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches,videoPausedByUser=false;
+function showPage(hash){
+  if(hash==='#contact')return false;
+  var consult=hash==='#consultation'||hash==='#privacy',changed=$('#consultation').hidden===consult,v=$('#heroVid');
+  $('#home').hidden=consult;$('#consultation').hidden=!consult;
+  document.documentElement.classList.toggle('on-consult',consult);
+  updateTitle();
+  if(changed){if(consult)v.pause();else if(!videoPausedByUser&&!reduceMotion)v.play().catch(function(){})}
+  return changed;
+}
+function goTo(hash,animate){
+  var changed=showPage(hash),behavior=animate&&!changed&&!reduceMotion?'smooth':'auto';
+  var target=hash==='#top'?$('#home'):$(hash),y=0;
+  if(target&&hash!=='#top'&&hash!=='#consultation')y=target.getBoundingClientRect().top+window.scrollY-$('#hdr').getBoundingClientRect().height-18;
+  var destination=target&&(target.querySelector('h1,h2,h4'));
+  if(destination){destination.setAttribute('tabindex','-1');destination.focus({preventScroll:true})}
+  window.scrollTo({top:y,behavior:behavior});
+}
+document.addEventListener('click',function(e){
+  var a=e.target.closest('a[href^="#"]'); if(!a) return;
+  var hash=a.getAttribute('href'); if(hash.length<2) return;
+  e.preventDefault();
+  if(hash!==location.hash){try{history.pushState(null,'',hash)}catch(err){}}
+  goTo(hash,true);
 });
-
+window.addEventListener('popstate',function(){goTo(location.hash||'#top',false)});
 /* Custom service menu; native select retains form and summary values. */
 function closeServicePicker(returnFocus){
   $('#service-options').hidden=true;
@@ -1035,49 +712,77 @@ $('#service-options').addEventListener('keydown',function(e){
 });
 document.addEventListener('click',function(e){if(!e.target.closest('.service-picker'))closeServicePicker(false)});
 document.addEventListener('focusin',function(e){if(!e.target.closest('.service-picker'))closeServicePicker(false)});
-$('#form').addEventListener('reset',function(){setTimeout(syncServicePicker,0)});
-
+$('#form').addEventListener('reset',function(){setTimeout(function(){files=[];buildFiles();syncServicePicker()},0)});
+/* ===== attachments ===== */
+var files=[],MAX_FILES=3,MAX_FILE_BYTES=5*1024*1024;
+function fileSize(bytes){return bytes<1024*1024?Math.max(1,Math.round(bytes/1024))+' KB':(bytes/1024/1024).toFixed(1)+' MB'}
+function buildFiles(){
+  var list=$('#fileList');
+  list.hidden=!files.length;
+  list.innerHTML=files.map(function(f,i){
+    return '<li><span class="file-name" dir="auto">'+escapeText(f.name)+'</span><span class="file-size" dir="ltr">'+fileSize(f.size)+'</span>'+
+      '<button type="button" data-remove="'+i+'" aria-label="'+t.fileRemove+': '+escapeText(f.name)+'"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></li>';
+  }).join('');
+}
+$('#f-files').addEventListener('change',function(e){
+  var field=$('#form .field[data-f="files"]'),error='';
+  field.classList.remove('bad');$('[data-err]',field).textContent='';
+  Array.from(e.target.files).forEach(function(f){
+    if(files.some(function(x){return x.name===f.name&&x.size===f.size}))return;
+    if(!/\.(pdf|docx?|jpe?g|png)$/i.test(f.name))error=t.eFileType;
+    else if(!f.size||f.size>MAX_FILE_BYTES)error=t.eFileSize;
+    else if(files.length>=MAX_FILES)error=t.eFileCount;
+    else files.push(f);
+  });
+  e.target.value='';
+  buildFiles();
+  if(error)setErr('files',error);
+});
+$('#fileList').addEventListener('click',function(e){
+  var b=e.target.closest('[data-remove]'); if(!b) return;
+  files.splice(Number(b.dataset.remove),1);buildFiles();$('#f-files').focus();
+});
+function readFiles(){
+  return Promise.all(files.map(function(f){
+    return new Promise(function(resolve,reject){
+      var reader=new FileReader();
+      reader.onload=function(){resolve({name:f.name,data:String(reader.result).split(',')[1]})};
+      reader.onerror=reject;
+      reader.readAsDataURL(f);
+    });
+  }));
+}
 /* ===== form ===== */
 function clearErrors(){ $$('#form .field').forEach(function(f){ f.classList.remove('bad'); f.querySelectorAll('input,textarea,button').forEach(function(el){el.removeAttribute('aria-invalid')}); var e=$('[data-err]',f); if(e) e.textContent='' }) }
 function setErr(name,msg){
   var f=$('#form .field[data-f="'+name+'"]'); if(!f) return;
-  f.classList.add('bad');f.querySelectorAll('input,textarea,button').forEach(function(el){el.setAttribute('aria-invalid','true')}); $('[data-err]',f).textContent=msg;
+  f.classList.add('bad');f.querySelectorAll('input,textarea,.service-trigger').forEach(function(el){el.setAttribute('aria-invalid','true')}); $('[data-err]',f).textContent=msg;
 }
 $('#form').addEventListener('submit',function(e){
   e.preventDefault();
   clearErrors();
   var msgEl=$('#formMsg'); msgEl.hidden=true; msgEl.className='form-msg';
   var name=$('#f-name').value.trim(), mob=$('#f-mobile').value.replace(/[\s-]/g,''),
-      mail=$('#f-email').value.trim(), svc=$('#f-service').value, ok=true, first=null;
+      mail=$('#f-email').value.trim(), svc=$('#f-service').value, subject=$('#f-subject').value.trim(),
+      description=$('#f-details').value.trim(), ok=true, first=null;
 
   if(name.length<2){ setErr('name',t.eName); ok=false; first=first||'#f-name' }
   if(!/^(?:0?5\d{8}|(?:\+?966)5\d{8})$/.test(mob)){ setErr('mobile',t.eMobile); ok=false; first=first||'#f-mobile' }
-  if(mail && !/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(mail)){ setErr('email',t.eEmail); ok=false; first=first||'#f-email' }
+  if(!/^[^@\s]+@[^@\s.]+(\.[^@\s.]+)+$/.test(mail)){ setErr('email',t.eEmail); ok=false; first=first||'#f-email' }
   if(!svc){ setErr('service',t.eService); ok=false; first=first||'#service-trigger' }
+  if(!subject){ setErr('subject',t.eSubject); ok=false; first=first||'#f-subject' }
+  if(!description){ setErr('details',t.eDetails); ok=false; first=first||'#f-details' }
   if(!$('#f-consent').checked){ setErr('consent',t.eConsent); ok=false; first=first||'#f-consent' }
 
   if(!ok){ if(first) $(first).focus(); return }
 
   if(!CONTACT.whatsRaw){msgEl.hidden=false;msgEl.textContent=L==='ar'?'التواصل غير متاح مؤقتًا.':'Contact is temporarily unavailable.';return}
-  var details=[t.fName+': '+name,t.fMobile+': '+mob,mail?t.fEmail+': '+mail:'',$('#f-details').value.trim()].filter(Boolean).join('\n');
-  var url=waLink(svc,details);
-  submitEnquiry({source:'form',service:svc,name:name,mobile:mob,email:mail,details:$('#f-details').value.trim(),consent:true},url);
-
+  var details=[t.fName+': '+name,t.fMobile+': '+mob,t.fEmail+': '+mail,t.fSubject+': '+subject,description,files.length?t.fileCount+': '+files.length:''].filter(Boolean).join('\n');
+  submitEnquiry({source:'form',service:svc,name:name,mobile:mob,email:mail,subject:subject,details:description,consent:true},waLink(svc,details),readFiles());
 });
 
-/* ===== reveal ===== */
-if('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  var io=new IntersectionObserver(function(es){
-    es.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target) } });
-  },{rootMargin:'0px 0px -8% 0px',threshold:.06});
-  $$('.rv').forEach(function(el){
-    if(el.getBoundingClientRect().top < window.innerHeight*1.05) return;
-    el.classList.add('arm'); io.observe(el);
-  });
-}
-
 /* reduced motion: poster only */
-if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+if(reduceMotion){
   var v=$('#heroVid'); if(v){ v.pause(); v.removeAttribute('autoplay') }
 }
 
@@ -1110,35 +815,48 @@ function statusMessage(message,url){
   dismiss.onclick=function(){el.hidden=true};el.appendChild(dismiss);
   if(url){var a=document.createElement('a');a.href=url;a.target='_blank';a.rel='noopener noreferrer';a.textContent=L==='ar'?'افتح واتساب':'Open WhatsApp';el.appendChild(a)}
 }
-function submitEnquiry(fields,url){
+function setSubmitBusy(busy){
+  var b=$('#formSubmit');b.disabled=busy;b.setAttribute('aria-busy',String(busy));b.textContent=busy?t.fSending:t.fSubmit;
+}
+function submitEnquiry(fields,url,attachments){
   if(enquiryBusy)return;
   if(!hostNonce){statusMessage(L==='ar'?'يرجى الانتظار حتى اكتمال الاتصال ثم إعادة المحاولة.':'Please wait for the connection and try again.');return}
   enquiryBusy=true;
+  var isForm=fields.source==='form';
+  if(isForm)setSubmitBusy(true);
   var popup=window.open('about:blank','_blank');if(popup)popup.opener=null;
   statusMessage(L==='ar'?'جارٍ حفظ طلبك…':'Saving your request…');
-  eventQueue.push({event:{kind:'request',id:crypto.randomUUID(),language:L,...fields},done:function(receipt){
-    enquiryBusy=false;
-    if(!receipt.ok){if(popup)popup.close();statusMessage(L==='ar'?'تعذر حفظ الطلب. راجع التفاصيل وأعد المحاولة.':'Unable to save the request. Check your details and try again.');return}
-    if(!ovl.hidden)closeSheet();
-    statusMessage(L==='ar'?'تم حفظ الطلب. تابع المحادثة في واتساب.':'Request saved. Continue the conversation in WhatsApp.',url);
-    if(popup&&!popup.closed)popup.location.href=url;
-  }});
-  sendNext();
+  Promise.resolve(attachments).then(function(list){
+    if(list&&list.length)fields.attachments=list;
+    eventQueue.push({event:{kind:'request',id:crypto.randomUUID(),language:L,...fields},done:function(receipt){
+      enquiryBusy=false;if(isForm)setSubmitBusy(false);
+      if(!receipt.ok){if(popup)popup.close();statusMessage(L==='ar'?'تعذر حفظ الطلب. راجع التفاصيل وأعد المحاولة.':'Unable to save the request. Check your details and try again.');return}
+      if(isForm)$('#form').reset();
+      statusMessage(L==='ar'?'تم حفظ الطلب. تابع المحادثة في واتساب.':'Request saved. Continue the conversation in WhatsApp.',url);
+      if(popup&&!popup.closed)popup.location.href=url;
+    }});
+    sendNext();
+  }).catch(function(){
+    enquiryBusy=false;if(isForm)setSubmitBusy(false);
+    if(popup)popup.close();
+    statusMessage(t.eFileRead);
+  });
 }
 document.addEventListener('click',function(e){
   var a=e.target.closest('a');if(!a||!a.href.startsWith('https://wa.me/'))return;
   if(a.closest('#requestStatus'))return;
   e.preventDefault();
-  submitEnquiry({source:'whatsapp',service:a.id==='sheetCta'?$('#sheetH').textContent:''},a.href);
+  submitEnquiry({source:'whatsapp',service:''},a.href);
 });
 
 function updateVideoControl(){
   var v=$('#heroVid'),b=$('#videoToggle');if(!v||!b)return;
   b.textContent=v.paused?'▷':'Ⅱ';b.setAttribute('aria-label',v.paused?t.videoPlay:t.videoPause);
 }
-$('#videoToggle').addEventListener('click',function(){var v=$('#heroVid');if(v.paused)v.play().catch(function(){});else v.pause()});
+$('#videoToggle').addEventListener('click',function(){var v=$('#heroVid');videoPausedByUser=!v.paused;if(v.paused)v.play().catch(function(){});else v.pause()});
 $('#heroVid').addEventListener('play',updateVideoControl);$('#heroVid').addEventListener('pause',updateVideoControl);
 render();
+if(location.hash)goTo(location.hash,false);
 applyContactConfig(window.LAW_OFFICE_CONFIG);
 if(window.parent!==window){
   // Streamlit creates component frames with scrolling disabled. Explicitly enable

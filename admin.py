@@ -61,8 +61,8 @@ def show_admin(store, password, default_phone):
         st.caption('Form submissions contain entered contact details. WhatsApp clicks record an enquiry handoff only; they do not confirm that a message was sent.')
         rows = store.requests()
         status = st.selectbox('Status filter', ['All','Open','Closed'])
-        query = st.text_input('Search name, phone or service', max_chars=100).strip().lower()
-        shown = [r for r in rows if (status=='All' or r['status']==status.lower()) and (not query or query in ' '.join([r['name'],r['mobile'],r['service']]).lower())]
+        query = st.text_input('Search name, phone, service or subject', max_chars=100).strip().lower()
+        shown = [r for r in rows if (status=='All' or r['status']==status.lower()) and (not query or query in ' '.join([r['name'],r['mobile'],r['service'],r['subject']]).lower())]
         if not shown:
             st.info('No matching requests yet / لا توجد طلبات مطابقة')
         else:
@@ -73,9 +73,11 @@ def show_admin(store, password, default_phone):
             selected = st.selectbox('Open a request', list(lookup), format_func=lambda ident: f"{lookup[ident]['name'] or 'WhatsApp enquiry'} · {lookup[ident]['service'] or 'General consultation'} · {ident[:8]}")
             row = lookup[selected]
             st.subheader(row['name'] or 'WhatsApp enquiry / استفسار واتساب')
-            for label,key in [('Service','service'),('Phone','mobile'),('Email','email'),('Language','language'),('Source','source')]:
+            for label,key in [('Service','service'),('Subject','subject'),('Phone','mobile'),('Email','email'),('Language','language'),('Source','source')]:
                 st.text(f"{label}: {row[key] or 'Not provided'}")
             st.text(row['details'] or 'No additional details provided.')
+            for item in store.attachments(selected):
+                st.download_button(f"Download / تنزيل: {item['filename']}",item['content'],file_name=item['filename'],mime='application/octet-stream',key='attachment_'+item['id'])
             with st.form('edit_'+selected):
                 new_status = st.radio('Request status',['open','closed'],index=0 if row['status']=='open' else 1,horizontal=True)
                 notes = st.text_area('Internal notes (admin only)',value=row['notes'],max_chars=5000)
