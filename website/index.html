@@ -44,7 +44,7 @@
 body{
   margin:0;background:var(--ink);color:var(--on-ink);
   font-family:var(--body);font-size:17px;line-height:var(--lh);
-  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;overflow-x:clip;
 }
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:rgba(16,38,61,.96)}
 img,video{max-width:100%;display:block}
@@ -235,7 +235,7 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 <a class="skip-link" href="#expertise">تخطَّ إلى المحتوى / Skip to content</a>
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
-    <a class="brand" href="#top"><img class="logo" src="assets/logo.svg" alt="محمد منصور السبعان للمحاماة والاستشارات القانونية والتوثيق" width="99" height="88"></a>
+    <a class="brand" href="#top"><img class="logo" src="assets/logo.svg" alt="محمد منصور السبعان للمحاماة والاستشارات القانونية والتوثيق" width="144" height="128"></a>
     <div class="hdr-act">
       <button class="lang" id="lang" type="button"></button>
       <a class="btn sm" href="#consultation" data-i="ctaPrimary"></a>
@@ -264,23 +264,30 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 
 <main id="home">
 
-  <!-- VISION -->
-  <section class="hero" id="vision" aria-labelledby="vision-title">
-    <div class="wrap hero-in">
-      <h1 id="vision-title" data-i="visionH"></h1>
-      <p class="vision-line" data-i="visionLine"></p>
-    </div>
-    <div class="wrap hero-media-wrap"><div class="hero-media">
+  <!-- FILM -->
+  <section class="hero">
+    <div class="hero-media">
       <video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="assets/office-brand.jpg" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
       <button id="videoToggle" type="button" class="video-toggle" aria-label="Pause background video">Ⅱ</button>
-    </div></div>
+    </div>
+  </section>
+
+  <!-- VISION -->
+  <section class="vision-band" id="vision" aria-labelledby="vision-title">
+    <div class="wrap vision-in">
+      <h1 id="vision-title" data-i="visionH"></h1>
+      <p class="vision-line" id="visionLine"></p>
+    </div>
   </section>
 
   <!-- EXPERTISE -->
   <section class="band" id="expertise" aria-labelledby="expertise-title">
-    <div class="wrap xp-grid">
-      <h2 class="h-sec" id="expertise-title" data-i="expertiseH"></h2>
-      <ul class="xp-list" id="xpList"></ul>
+    <div class="wrap">
+      <div class="xp-head">
+        <h2 class="h-sec" id="expertise-title" data-i="expertiseH"></h2>
+        <span class="xp-rule" aria-hidden="true"></span>
+      </div>
+      <ol class="xp-list" id="xpList"></ol>
       <div class="audience" id="audience"></div>
     </div>
   </section>
@@ -375,11 +382,15 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 
   <section class="band closing" id="privacy" aria-labelledby="privacy-title">
     <div class="wrap closing-in">
-      <div>
-        <h2 id="privacy-title" data-i="privacyH"></h2>
-        <p data-i="privacyP"></p>
-      </div>
+      <span class="closing-rule" aria-hidden="true"></span>
       <p class="closing-line" data-i="closing"></p>
+      <div class="privacy-note">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 10.5h12a1.5 1.5 0 0 1 1.5 1.5v7a1.5 1.5 0 0 1-1.5 1.5H6A1.5 1.5 0 0 1 4.5 19v-7A1.5 1.5 0 0 1 6 10.5Zm2 0V8a4 4 0 0 1 8 0v2.5"/></svg>
+        <div>
+          <h2 id="privacy-title" data-i="privacyH"></h2>
+          <p data-i="privacyP"></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -447,8 +458,8 @@ ar:{
  navHome:"الرئيسية",navAbout:"من نحن",navExpertise:"اختصاصاتنا القانونية",navVision:"رؤيتنا",navContact:"تواصل معنا",
  ctaPrimary:"اطلب استشارتك القانونية",
  visionH:"رؤيتنا",
- visionLine:"تسخير المعرفة القانونية لحماية الحقوق، وتمكين الأفراد من الوصول إلى العدالة بثقة ووعي، وتقديم حلول قانونية تصنع فارقاً حقيقياً في حياتهم.",
- expertiseH:"خبراتنا القانونية",
+ visionLine:[["تسخير المعرفة القانونية ","لحماية الحقوق","،"],["وتمكين الأفراد من الوصول إلى ","العدالة"," بثقة ووعي،"],["وتقديم حلول قانونية ","تصنع فارقاً حقيقياً"," في حياتهم."]],
+ expertiseH:"خبراتنا القانونية",numbers:["٠١","٠٢","٠٣","٠٤"],
  expertise:[["chat","الاستشارات القانونية","لفهم الموقف القانوني واتخاذ القرارات الصحيحة."],
             ["building","خدمات الشركات والأعمال","لتأسيس الشركات وتنظيم أعمالها وحماية مصالحها القانونية."],
             ["court","التقاضي والتمثيل القانوني","للمطالبة بالحقوق والدفاع عن المصالح أمام الجهات القضائية."],
@@ -488,8 +499,8 @@ en:{
  navHome:"Home",navAbout:"About us",navExpertise:"Our legal specialisations",navVision:"Our vision",navContact:"Contact us",
  ctaPrimary:"Request your legal consultation",
  visionH:"Our vision",
- visionLine:"Harnessing legal knowledge to protect rights, empowering individuals to reach justice with confidence and awareness, and delivering legal solutions that make a real difference in their lives.",
- expertiseH:"Our legal expertise",
+ visionLine:[["Harnessing legal knowledge to ","protect rights",","],["empowering individuals to reach ","justice"," with confidence and awareness,"],["and delivering legal solutions that ","make a real difference"," in their lives."]],
+ expertiseH:"Our legal expertise",numbers:["01","02","03","04"],
  expertise:[["chat","Legal consultations","To understand the legal position and make the right decisions."],
             ["building","Corporate and business services","To establish companies, organise their operations and protect their legal interests."],
             ["court","Litigation and legal representation","To claim rights and defend interests before the judicial authorities."],
@@ -529,17 +540,22 @@ var L='ar', t=T.ar;
 try{if(localStorage.getItem('alsabaan-language')==='en')L='en'}catch(e){}
 var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
+function buildVision(){
+  $('#visionLine').innerHTML=t.visionLine.map(function(x){
+    return '<span>'+x[0]+'<em>'+x[1]+'</em>'+x[2]+'</span>';
+  }).join(' ');
+}
 function buildExpertise(){
-  $('#xpList').innerHTML=t.expertise.map(function(x){
-    return '<li><span class="ico">'+svgIco(x[0])+'</span><h3>'+x[1]+'</h3><p>'+x[2]+'</p></li>';
+  $('#xpList').innerHTML=t.expertise.map(function(x,i){
+    return '<li><span class="xp-top"><span class="xp-num">'+t.numbers[i]+'</span><span class="ico">'+svgIco(x[0])+'</span></span><h3>'+x[1]+'</h3><p>'+x[2]+'</p></li>';
   }).join('');
 }
 function flipCard(key,label,list,image){
   return '<button class="flip" type="button" data-flip="'+key+'" aria-expanded="false">'+
     '<span class="flip-in">'+
-      '<span class="flip-face flip-front"><img src="assets/'+image+'" alt="" loading="lazy">'+
-        '<span class="flip-label"><b>'+label+'</b><span class="flip-hint">'+t.flipHint+' '+svgIco('flip')+'</span></span></span>'+
-      '<span class="flip-face flip-back" aria-hidden="true"><b>'+label+'</b>'+
+      '<span class="flip-face flip-front"><span class="flip-pic"><img src="assets/'+image+'" alt="" loading="lazy"></span>'+
+        '<b>'+label+'</b><span class="flip-foot"><span>'+t.flipHint+'</span>'+svgIco('flip')+'</span></span>'+
+      '<span class="flip-face flip-back" aria-hidden="true"><b>'+label+'</b><span class="flip-sub">'+t.flipHint+'</span>'+
         list.map(function(x){return '<span class="flip-item">'+x+'</span>'}).join('')+'</span>'+
     '</span></button>';
 }
@@ -601,7 +617,7 @@ function render(){
   $('#careImg').alt=t.careAlt;
   refreshWhatsAppLinks(); updateVideoControl();
   updateTitle();
-  buildExpertise(); buildAudience(); buildTypes(); buildContact(); buildFiles();
+  buildVision(); buildExpertise(); buildAudience(); buildTypes(); buildContact(); buildFiles();
   clearErrors();
 }
 function updateTitle(){document.title=$('#consultation').hidden?t.title:t.consultTitle}
@@ -638,7 +654,7 @@ document.addEventListener('keydown',function(e){
   }
 });
 var hdr=$('#hdr');
-function onScroll(){ hdr.classList.toggle('solid', window.scrollY>40) }
+function onScroll(){ hdr.classList.toggle('solid', window.scrollY>24) }
 window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 /* The consultation page shares this document so the Streamlit connection survives navigation. */
 var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches,videoPausedByUser=false;
@@ -651,10 +667,11 @@ function showPage(hash){
   if(changed){if(consult)v.pause();else if(!videoPausedByUser&&!reduceMotion)v.play().catch(function(){})}
   return changed;
 }
+function hdrVisible(){return hdr.offsetHeight+parseFloat(getComputedStyle(hdr).top)}
 function goTo(hash,animate){
   var changed=showPage(hash),behavior=animate&&!changed&&!reduceMotion?'smooth':'auto';
   var target=hash==='#top'?$('#home'):$(hash),y=0;
-  if(target&&hash!=='#top'&&hash!=='#consultation')y=target.getBoundingClientRect().top+window.scrollY-$('#hdr').getBoundingClientRect().height-18;
+  if(target&&hash!=='#top'&&hash!=='#consultation')y=target.getBoundingClientRect().top+window.scrollY-hdrVisible()-18;
   var destination=target&&(target.querySelector('h1,h2,h4'));
   if(destination){destination.setAttribute('tabindex','-1');destination.focus({preventScroll:true})}
   window.scrollTo({top:y,behavior:behavior});
