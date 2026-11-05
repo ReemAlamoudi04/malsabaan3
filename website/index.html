@@ -268,7 +268,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
   <section class="hero">
     <div class="hero-media">
       <video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="assets/office-brand.jpg" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
-      <button id="videoToggle" type="button" class="video-toggle" aria-label="Pause background video">Ⅱ</button>
     </div>
   </section>
 
@@ -491,7 +490,7 @@ ar:{
  pending:"يُضاف قريبًا",whatsapp:"واتساب",
  legal:"جميع الحقوق محفوظة © 2026",privacyLink:"سياسة الخصوصية",termsLink:"الشروط والأحكام",
  mbarWhats:"واتساب",
- waText:"اهلاً بك وشكراً لتواصلك مع مكتب المحامي والموثق: محمد السبعان ⚖️\nيسعدني خدمتك وفق الاتي:- ضع استشارتك او استفسارك كاملة دون نقص وسيتم الرد عليها بمشيئة الله",videoPause:"إيقاف الفيديو",videoPlay:"تشغيل الفيديو"
+ waText:"اهلاً بك وشكراً لتواصلك مع مكتب المحامي والموثق: محمد السبعان ⚖️\nيسعدني خدمتك وفق الاتي:- ضع استشارتك او استفسارك كاملة دون نقص وسيتم الرد عليها بمشيئة الله"
 },
 en:{
  dir:"ltr",langBtn:"ع",title:"Mohammed Al-Sabaan Law Firm",consultTitle:"Request your legal consultation | Mohammed Al-Sabaan Law Firm",
@@ -532,7 +531,7 @@ en:{
  pending:"Coming soon",whatsapp:"WhatsApp",
  legal:"All rights reserved © 2026",privacyLink:"Privacy policy",termsLink:"Terms and conditions",
  mbarWhats:"WhatsApp",
- waText:"Welcome, and thank you for contacting the office of lawyer and notary Mohammed Al Sabaan ⚖️\nI am glad to assist you as follows: please send your full consultation or enquiry, with nothing left out, and it will be answered, God willing.",videoPause:"Pause video",videoPlay:"Play video"
+ waText:"Welcome, and thank you for contacting the office of lawyer and notary Mohammed Al Sabaan ⚖️\nI am glad to assist you as follows: please send your full consultation or enquiry, with nothing left out, and it will be answered, God willing."
 }};
 /* ===== i18n ===== */
 var L='ar', t=T.ar;
@@ -614,7 +613,7 @@ function render(){
   $('.menu-links').setAttribute('aria-label',L==='ar'?'القائمة الرئيسية':'Main menu');
   $('#lang').setAttribute('aria-label', L==='ar'?'Switch to English':'التبديل إلى العربية');
   $('#careImg').alt=t.careAlt;
-  refreshWhatsAppLinks(); updateVideoControl();
+  refreshWhatsAppLinks();
   updateTitle();
   buildVision(); buildExpertise(); buildAudience(); buildTypes(); buildContact(); buildFiles();
   clearErrors();
@@ -656,14 +655,14 @@ var hdr=$('#hdr');
 function onScroll(){ hdr.classList.toggle('solid', window.scrollY>24) }
 window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 /* The consultation page shares this document so the Streamlit connection survives navigation. */
-var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches,videoPausedByUser=false;
+var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function showPage(hash){
   if(hash==='#contact')return false;
   var consult=hash==='#consultation'||hash==='#privacy',changed=$('#consultation').hidden===consult,v=$('#heroVid');
   $('#home').hidden=consult;$('#consultation').hidden=!consult;
   document.documentElement.classList.toggle('on-consult',consult);
   updateTitle();
-  if(changed){if(consult)v.pause();else if(!videoPausedByUser&&!reduceMotion)v.play().catch(function(){})}
+  if(changed){if(consult)v.pause();else if(!reduceMotion)v.play().catch(function(){})}
   return changed;
 }
 function hdrVisible(){return hdr.offsetHeight+parseFloat(getComputedStyle(hdr).top)}
@@ -865,12 +864,6 @@ document.addEventListener('click',function(e){
   submitEnquiry({source:'whatsapp',service:''},a.href);
 });
 
-function updateVideoControl(){
-  var v=$('#heroVid'),b=$('#videoToggle');if(!v||!b)return;
-  b.textContent=v.paused?'▷':'Ⅱ';b.setAttribute('aria-label',v.paused?t.videoPlay:t.videoPause);
-}
-$('#videoToggle').addEventListener('click',function(){var v=$('#heroVid');videoPausedByUser=!v.paused;if(v.paused)v.play().catch(function(){});else v.pause()});
-$('#heroVid').addEventListener('play',updateVideoControl);$('#heroVid').addEventListener('pause',updateVideoControl);
 render();
 if(location.hash)goTo(location.hash,false);
 applyContactConfig(window.LAW_OFFICE_CONFIG);
