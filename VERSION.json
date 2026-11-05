@@ -14,7 +14,7 @@
     "app.py": "43d3431bfd63f66bcfd11589d864c281a050ea106bf94679a08629208b475ae4",
     "requirements.txt": "03ab59d623b3a16f80ac0067dd9a75865704cd32e82f26884d5469bd7aad9bdd",
     "secrets.example.toml": "6678bb184ec22d6cbd964b217056e47cee03f6d6fa5fb3ea8b82c86c72e28099",
-    "storage.py": "008a291922a4dac3514f161b38e2a95734b2a23d4feedf0685398bb4d2111739",
+    "storage.py": "b5183c611cd7e014cbdc2992f29d7f0f844fff75c8e16ea89278554c936ef9f0",
     "website/alternative.css": "84413fc0be6f5adefc796150ad2ae446ebea618091a0d0567522813dcc75e305",
     "website/assets/hero.mp4": "868264a81cbf0026bddf40307ffc2880012208f927283bb67c39fc8c3b451234",
     "website/assets/legal-details.jpg": "259caf349693eb10fadb8d3d26b78a0c2c697bfdbba413dca4de9846fe1fb587",
@@ -26,7 +26,7 @@
     "website/assets/office-desk.jpg": "01b34089435ec3f214c3316a20487f1aeb52d0a823b2bb47d21ee3f07e63781d",
     "website/assets/reception.jpg": "53f8370fbdcbfb3c0383d3ac54bab70fd453e3e8f8dd488387d8ddfa08b2bbcb",
     "website/contact-config.js": "f1e23c0635851e483de7214db4bea01f8da4fb8c2a608ab822a6688d779f298a",
-    "website/index.html": "8e5bd9720299aa973e4be48f047af4d48249ce454a303f374f1a4f9502d1f228",
+    "website/index.html": "76c26f10c16a4ffb3e31fe00b5f96a3f75a31e5778d30b62f1973db19404e8f6",
     "website/theme.css": "660801b872628e5eef843b1b7b8054d1831a3d0ed8fc3493d43b389146919ccb"
   }
 }

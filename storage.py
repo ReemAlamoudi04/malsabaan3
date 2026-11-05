@@ -12,7 +12,7 @@ import sqlite3
 import uuid
 from urllib.parse import urlparse
 
-DEFAULTS = {"whatsapp": "", "address_ar": "الرياض، المملكة العربية السعودية", "address_en": "Riyadh, Saudi Arabia", "latitude": 25.0048611, "longitude": 46.6021667, "maps_url": "https://maps.app.goo.gl/cBHxwKfLqGYcoLCr8", "hours_ar": "الأحد – الخميس، ٩ صباحًا – ٥ مساءً", "hours_en": "Sunday–Thursday, 9am–5pm"}
+DEFAULTS = {"whatsapp": "", "address_ar": "جدة، المملكة العربية السعودية", "address_en": "Jeddah, Saudi Arabia", "latitude": 25.0048611, "longitude": 46.6021667, "maps_url": "https://maps.app.goo.gl/cBHxwKfLqGYcoLCr8", "hours_ar": "الأحد – الخميس، ٩ صباحًا – ٥ مساءً", "hours_en": "Sunday–Thursday, 9am–5pm"}
 
 MAX_ATTACHMENTS = 3
 MAX_ATTACHMENT_BYTES = 5 * 1024 * 1024
