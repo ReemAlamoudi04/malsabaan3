@@ -15,7 +15,7 @@
     "requirements.txt": "03ab59d623b3a16f80ac0067dd9a75865704cd32e82f26884d5469bd7aad9bdd",
     "secrets.example.toml": "6678bb184ec22d6cbd964b217056e47cee03f6d6fa5fb3ea8b82c86c72e28099",
     "storage.py": "b5183c611cd7e014cbdc2992f29d7f0f844fff75c8e16ea89278554c936ef9f0",
-    "website/alternative.css": "8f4b02964e63bc43e6f4aac515ff5c76b143ef0faff8f2863d2ecf4ffcbcc95f",
+    "website/alternative.css": "f7ed6da509cbc33029a802f9bd5ddfefb514828442e61f6bf8efa5adbb8ce41b",
     "website/assets/hero.mp4": "868264a81cbf0026bddf40307ffc2880012208f927283bb67c39fc8c3b451234",
     "website/assets/legal-details.jpg": "259caf349693eb10fadb8d3d26b78a0c2c697bfdbba413dca4de9846fe1fb587",
     "website/assets/logo-full.png": "deeea5b9d93fd0dcbc1ce942180bf02b441824c8769b3320ecff8ce752cf6bb6",
@@ -26,7 +26,7 @@
     "website/assets/office-desk.jpg": "01b34089435ec3f214c3316a20487f1aeb52d0a823b2bb47d21ee3f07e63781d",
     "website/assets/reception.jpg": "53f8370fbdcbfb3c0383d3ac54bab70fd453e3e8f8dd488387d8ddfa08b2bbcb",
     "website/contact-config.js": "f1e23c0635851e483de7214db4bea01f8da4fb8c2a608ab822a6688d779f298a",
-    "website/index.html": "ad5cf11fda9bd78a0a0c22f2de80092d250afa8fb5d014fe76b07f6bdcfa99c0",
+    "website/index.html": "4ae8ef42a0db6ef27a86fcac0831506f726dd223d1493335514b668c33a5aded",
     "website/theme.css": "12e3170ceadd2378b2e8f94c0a348eea376e1805f8a5251483d9cb721f321ed7"
   }
 }

@@ -91,9 +91,8 @@ a{text-underline-offset:5px}.btn{background:var(--ink);border-color:var(--ink);c
 .xp-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .xp-box{background:#fff;border:1px solid var(--box-rule);transition:border-color .2s ease}
 .xp-box h3{margin:0;font:inherit;letter-spacing:0}
-.xp-btn{display:grid;grid-template-columns:auto auto minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:60px;padding:10px 20px;text-align:start;color:var(--ink);transition:transform .16s var(--ease-out)}
+.xp-btn{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:12px;width:100%;min-height:60px;padding:10px 20px;text-align:start;color:var(--ink);transition:transform .16s var(--ease-out)}
 .xp-btn:active{transform:scale(.99)}
-.xp-num{font-family:var(--display);font-size:20px;font-weight:600;line-height:1;color:#81603f}
 .xp-btn .ico{width:24px;height:24px;color:#81603f}
 .xp-title{font-size:17px;font-weight:500;line-height:1.5}
 .xp-mark{position:relative;width:14px;height:14px}
@@ -189,9 +188,9 @@ h3:has(.xp-btn[aria-expanded=true])+.xp-panel{grid-template-rows:1fr;visibility:
   .hero::before{background:linear-gradient(to top,rgba(10,24,38,.94) 0%,rgba(10,24,38,.86) 52%,rgba(10,24,38,.3) 78%,rgba(10,24,38,.06) 100%)}
   .hero-copy{padding-block:24px 28px}.hero h1,:root[lang=en] .hero h1{font-size:clamp(25px,7vw,30px);margin-bottom:8px}.hero-text{margin-bottom:16px;font-size:15px;line-height:1.85}
   .xp-list{gap:10px}
-  .xp-btn,.xp-btn[aria-expanded=true]{grid-template-columns:auto auto 1fr;gap:6px 8px;min-height:0;padding:12px}
-  .xp-title{grid-column:1/-1;grid-row:2;font-size:15px}.xp-mark{grid-column:3;justify-self:end}
-  .xp-num{font-size:17px}.xp-btn .ico{width:20px;height:20px}
+  .xp-btn,.xp-btn[aria-expanded=true]{grid-template-columns:auto 1fr;gap:6px 8px;min-height:0;padding:12px}
+  .xp-title{grid-column:1/-1;grid-row:2;font-size:15px}.xp-mark{grid-column:2;justify-self:end}
+  .xp-btn .ico{width:20px;height:20px}
   .xp-panel p{padding:0 12px 12px;font-size:13.5px;line-height:1.75}
   .care-copy{padding-block:32px}.care p{font-size:15px}
   .form-grid{gap:15px 12px;grid-template-columns:1fr}.form-foot .btn{width:100%!important}
