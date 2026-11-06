@@ -118,26 +118,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 .burger span::before,.burger span::after{content:"";position:absolute;left:0;width:20px;height:1px;background:var(--on-ink);transition:.3s}
 .burger span::before{top:-6px}.burger span::after{top:6px}
 
-/* ---- hero ---- */
-.hero{position:relative;min-height:min(92svh,860px);display:flex;align-items:flex-end;overflow:hidden}
-.hero video,.hero .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.hero::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(to top,rgba(16,38,61,.97) 2%,rgba(16,38,61,.82) 26%,rgba(16,38,61,.28) 58%,rgba(16,38,61,.55) 100%);
-}
-.hero-in{position:relative;z-index:2;width:100%;padding-block:clamp(48px,8vw,96px) clamp(44px,6vw,72px)}
-.hero .eyebrow{color:var(--bone-dim);margin-bottom:22px}
-.hero h1{font-size:clamp(30px,5.4vw,66px);line-height:1.28;max-width:17ch}
-:root[lang="en"] .hero h1{line-height:1.04;max-width:15ch}
-.hero .lede{color:var(--bone-dim);font-size:clamp(16px,1.5vw,19px);max-width:50ch;margin-top:24px}
-.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:38px}
-.scroll-cue{
-  display:flex;align-items:center;gap:10px;margin-top:46px;
-  font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--on-ink-soft);
-}
-.scroll-cue i{display:block;width:34px;height:1px;background:var(--brass);transform-origin:var(--cue-origin,left);animation:cue 2.6s ease-in-out infinite}
-@keyframes cue{0%,100%{transform:scaleX(.3);opacity:.5}50%{transform:scaleX(1);opacity:1}}
-
 /* ---- form ---- */
 .form-band{background:var(--ink-raise)}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:38px}
@@ -213,7 +193,6 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
   .two,.contact{grid-template-columns:1fr}
   .split{grid-template-columns:1fr}
   .split .pic{min-height:280px;order:-1}
-  .split.flip .pic{order:-1}
   .vals{grid-template-columns:1fr}
   .creds{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
@@ -236,6 +215,13 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
     <a class="brand" href="#top"><img class="logo" src="assets/logo.svg" alt="محمد منصور السبعان للمحاماة والاستشارات القانونية والتوثيق" width="144" height="128"></a>
+    <nav class="hdr-nav" aria-label="الروابط الرئيسية">
+      <a href="#top" data-i="navHome"></a>
+      <a href="#about" data-i="navAbout"></a>
+      <a href="#expertise" data-i="navExpertise"></a>
+      <a href="#vision" data-i="navVision"></a>
+      <a href="#contact" data-i="navContact"></a>
+    </nav>
     <div class="hdr-act">
       <button class="lang" id="lang" type="button"></button>
       <a class="btn sm" href="#consultation" data-i="ctaPrimary"></a>
@@ -264,41 +250,66 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
 
 <main id="home">
 
-  <!-- FILM -->
-  <section class="hero">
-    <div class="hero-media">
-      <video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="assets/office-brand.jpg" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <video id="heroVid" autoplay muted loop playsinline preload="metadata" poster="assets/office-brand.jpg" aria-hidden="true"><source src="assets/hero.mp4" type="video/mp4"></video>
+    <div class="wrap hero-copy">
+      <h1 class="sr-only" id="hero-title" data-i="brandName"></h1>
+      <p class="hero-text" data-i="heroText"></p>
+      <a class="btn" href="#consultation" data-i="ctaShort"></a>
     </div>
   </section>
 
-  <!-- VISION -->
-  <section class="vision-band" id="vision" aria-labelledby="vision-title">
-    <div class="wrap vision-in">
-      <h1 id="vision-title" data-i="visionH"></h1>
-      <p class="vision-line" id="visionLine"></p>
+  <!-- VISION AND MISSION -->
+  <section class="band" id="vision">
+    <div class="wrap vm-grid">
+      <article class="vm-box">
+        <svg class="vm-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Zm9.5-3a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/></svg>
+        <h2 data-i="visionH"></h2>
+        <p data-i="visionP1"></p>
+        <p data-i="visionP2"></p>
+      </article>
+      <article class="vm-box" id="mission">
+        <svg class="vm-ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Zm0-5a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm0-3a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
+        <h2 data-i="missionH"></h2>
+        <p data-i="missionP"></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="band" id="about" aria-labelledby="about-title">
+    <div class="wrap about-grid">
+      <div class="about-copy">
+        <h2 class="h-sec" id="about-title" data-i="aboutH"></h2>
+        <p data-i="aboutP1"></p>
+        <p data-i="aboutP2"></p>
+        <p data-i="aboutP3"></p>
+        <p data-i="aboutP4"></p>
+      </div>
+      <div class="about-pics">
+        <img class="wide" src="assets/reception.jpg" alt="" id="aboutImg" loading="lazy">
+        <img src="assets/office-desk.jpg" alt="" loading="lazy">
+        <img src="assets/legal-details.jpg" alt="" loading="lazy">
+      </div>
     </div>
   </section>
 
   <!-- EXPERTISE -->
   <section class="band" id="expertise" aria-labelledby="expertise-title">
     <div class="wrap">
-      <div class="xp-head">
-        <h2 class="h-sec" id="expertise-title" data-i="expertiseH"></h2>
-      </div>
-      <ol class="xp-list" id="xpList"></ol>
-      <div class="audience" id="audience"></div>
+      <h2 class="h-sec sec-title" id="expertise-title" data-i="expertiseH"></h2>
+      <ul class="xp-list" id="xpList"></ul>
     </div>
   </section>
 
   <!-- RIGHTS -->
-  <section class="band" id="about" aria-labelledby="about-title">
-    <div class="wrap care">
-      <div>
-        <h2 class="h-sec" id="about-title" data-i="careH"></h2>
-        <p class="lede" data-i="careP"></p>
-        <a class="btn" href="#consultation" data-i="ctaPrimary"></a>
-      </div>
-      <figure class="care-pic"><img src="assets/office-brand.jpg" alt="" id="careImg" loading="lazy"></figure>
+  <section class="care" id="care" aria-labelledby="care-title">
+    <img src="assets/office-brand.jpg" alt="" loading="lazy">
+    <div class="wrap care-copy">
+      <h2 class="h-sec" id="care-title" data-i="careH"></h2>
+      <p data-i="careP"></p>
+      <a class="btn" href="#consultation" data-i="ctaPrimary"></a>
     </div>
   </section>
 
@@ -445,7 +456,8 @@ var P = {
   chat:'<path d="M4 5h16v10H9l-5 4Z M8 9h8M8 12h5"/>',
   court:'<path d="M3 20h18M5 20V9m4 11V9m6 11V9m4 11V9M2.5 9 12 4l9.5 5Z"/>',
   seal:'<path d="M12 3 4.5 6.5v5c0 4.5 3.2 8.4 7.5 9.5 4.3-1.1 7.5-5 7.5-9.5v-5Z M9 11.5l2 2 4-4"/>',
-  flip:'<path d="M4 10a8 8 0 0 1 13.7-3.7L20 8.5M20 4v4.5h-4.5M20 14a8 8 0 0 1-13.7 3.7L4 15.5M4 20v-4.5h4.5"/>',
+  tree:'<path d="M12 21V9m0 0L8 5m4 4 4-4M12 15l-4-3m4 3 4-3M5 21h14"/>',
+  ledger:'<path d="M7 3h7l4 4v14H7Zm7 0v4h4M10 12h6M10 16h4"/>',
   whats:'<path d="M21 11.5a8.4 8.4 0 0 1-12.6 7.3L3 20.5l1.8-5.2A8.5 8.5 0 1 1 21 11.5Z"/>'
 };
 function svgIco(k){return '<svg viewBox="0 0 24 24" aria-hidden="true">'+P[k]+'</svg>'}
@@ -455,19 +467,25 @@ ar:{
  dir:"rtl",langBtn:"EN",title:"محمد السبعان للمحاماة",consultTitle:"اطلب استشارتك القانونية | محمد السبعان للمحاماة",
  navHome:"الرئيسية",navAbout:"من نحن",navExpertise:"اختصاصاتنا القانونية",navVision:"رؤيتنا",navContact:"تواصل معنا",
  ctaPrimary:"اطلب استشارتك القانونية",
- visionH:"رؤيتنا",
- visionLine:[["تسخير المعرفة القانونية ","لحماية الحقوق","،"],["وتمكين الأفراد من الوصول إلى ","العدالة"," بثقة ووعي،"],["وتقديم حلول قانونية ","تصنع فارقاً حقيقياً"," في حياتهم."]],
- expertiseH:"خبراتنا القانونية",numbers:["٠١","٠٢","٠٣","٠٤"],
- expertise:[["chat","الاستشارات القانونية","لفهم الموقف القانوني واتخاذ القرارات الصحيحة."],
-            ["building","خدمات الشركات والأعمال","لتأسيس الشركات وتنظيم أعمالها وحماية مصالحها القانونية."],
-            ["court","التقاضي والتمثيل القانوني","للمطالبة بالحقوق والدفاع عن المصالح أمام الجهات القضائية."],
-            ["seal","التوثيق والتسجيل العقاري","لتوثيق التصرفات العقارية وحفظ الحقوق وتسجيل الملكيات."]],
- corpLabel:"للشركات",indLabel:"للأفراد",flipHint:"الخدمات",
- corpList:["منازعات الشركاء وحقوق الحصص","الحوكمة وتنظيم العلاقة داخل المنشأة","تأسيس الكيانات والتراخيص","الاستشارات النظامية المستمرة"],
- indList:["قضايا الأحوال الشخصية","التركات وقسمتها","القضايا العقارية","التنفيذ وتحصيل المطالبات","القضايا الجنائية"],
+ brandName:"محمد السبعان للمحاماة والاستشارات القانونية والتوثيق",
+ visionH:"رؤيتنا",missionH:"رسالتنا",aboutH:"من نحن",expertiseH:"خبراتنا القانونية",numbers:["١","٢","٣","٤","٥","٦"],xpOpen:"عرض التعريف",
+ ctaShort:"اطلب استشارتك",
+ heroText:"نقدم خدمات المحاماة والاستشارات القانونية والتوثيق برؤية مهنية راسخة، ترتكز على الخبرة والمعرفة المتخصصة، والالتزام بأعلى معايير الجودة والاحترافية، لنضع بين أيدي عملائنا حلولًا قانونية مدروسة، تصون حقوقهم وتحمي مصالحهم، وتواكب تطلعاتهم بثقة وموثوقية.",
+ visionP1:"أن نكون وجهة موثوقة ورائدة في تقديم الخدمات القانونية والتوثيقية، من خلال ممارسة مهنية ترتكز على المعرفة القانونية، والتميز في الأداء، والالتزام بأعلى معايير الجودة والموثوقية.",
+ visionP2:"ونسعى إلى الإسهام في تطوير الممارسة القانونية وبيئة الأعمال في المملكة العربية السعودية، عبر حلول قانونية تواكب المستجدات التشريعية والاقتصادية، وتحفظ الحقوق، وتعزز الثقة واستقرار المعاملات.",
+ missionP:"تقديم خدمات قانونية وتوثيقية بمعايير مهنية رفيعة، تستند إلى المعرفة النظامية والدقة والالتزام، وتوفير حلول قانونية فعّالة ومدروسة تمكّن عملاءنا من حماية حقوقهم، وصون مصالحهم، واتخاذ قراراتهم بثقة ووعي قانوني.",
+ aboutP1:"نؤمن في مكتبنا بأن الممارسة القانونية مسؤولية مهنية تقوم على حماية الحقوق وصون المصالح، وتتجاوز حدود تقديم الاستشارات أو مباشرة الإجراءات؛ لتشكّل شراكة قانونية تستند إلى الفهم العميق لاحتياجات العملاء، والإدراك الدقيق لطبيعة تحدياتهم، والعمل على إيجاد الحلول القانونية المناسبة وفق الأطر النظامية المعتمدة.",
+ aboutP2:"نقدم خدمات المحاماة والاستشارات القانونية وأعمال التوثيق، وفق منهجية مهنية ترتكز على المعرفة القانونية المتخصصة، والتحليل المتأني، والإلمام بالأنظمة والتشريعات والإجراءات المعمول بها في المملكة العربية السعودية، بما يضمن معالجة المسائل القانونية بكفاءة وعناية.",
+ aboutP3:"ونلتزم في جميع أعمالنا بأعلى معايير المهنية والدقة والسرية والوضوح، بدءًا من دراسة المسائل القانونية وتقديم الرأي والمشورة، مرورًا بصياغة العقود والاتفاقيات وتمثيل العملاء أمام الجهات القضائية، وصولًا إلى إنجاز أعمال التوثيق والتسجيل وفق المتطلبات النظامية ذات الصلة.",
+ aboutP4:"ونسعى إلى بناء علاقات مهنية قائمة على الثقة والموثوقية، وأن نكون الخيار القانوني الذي يجد فيه عملاؤنا المعرفة المتخصصة، والرأي القانوني المدروس، والتمثيل المهني الذي يحفظ حقوقهم ويصون مصالحهم.",
+ expertise:[["chat", "الاستشارات القانونية", "لفهم الموقف القانوني واتخاذ القرارات الصحيحة."],
+            ["building", "خدمات الشركات والأعمال", "لتأسيس الشركات وتنظيم أعمالها وحماية مصالحها القانونية."],
+            ["court", "التقاضي والتمثيل القانوني", "للمطالبة بالحقوق والدفاع عن المصالح أمام الجهات القضائية."],
+            ["seal", "التوثيق والتسجيل العقاري", "لتوثيق التصرفات العقارية وحفظ الحقوق وتسجيل الملكيات."],
+            ["tree", "تصفية التركات", "حصر التركات وإدارتها وتصفيتها، وتوزيع الأصول والحقوق على الورثة وفقًا للأحكام الشرعية والأنظمة المعمول بها."],
+            ["ledger", "الإفلاس وإعادة التنظيم المالي وتصفية الشركات", "تقديم الخدمات القانونية المتعلقة بإجراءات الإفلاس وإعادة التنظيم المالي وتصفية الشركات والمؤسسات، وفقًا للأنظمة المعمول بها، بما يضمن حماية حقوق الأطراف ذات العلاقة وتسوية الالتزامات وإنهاء الإجراءات بكفاءة واحترافية."]],
  careH:"حقوقك تستحق العناية.",
  careP:"نضع معرفتنا القانونية في خدمتك، ونسعى إلى تقديم الدعم الذي يساعدك على فهم حقوقك وحمايتها.",
- careAlt:"استقبال مكتب محمد السبعان وشعار المكتب",
  consultH:"ابدأ خطوتك القانونية بثقة",
  consultP1:"لكل مسألة قانونية تفاصيلها، ونحن هنا لفهم احتياجك وتقديم التوجيه القانوني المناسب وفق الأنظمة والتشريعات المعمول بها.",
  consultP2:"اطلب استشارتك القانونية، ودعنا نساعدك على اتخاذ قرار مبني على معرفة واضحة.",
@@ -496,19 +514,25 @@ en:{
  dir:"ltr",langBtn:"ع",title:"Mohammed Al-Sabaan Law Firm",consultTitle:"Request your legal consultation | Mohammed Al-Sabaan Law Firm",
  navHome:"Home",navAbout:"About us",navExpertise:"Our legal specialisations",navVision:"Our vision",navContact:"Contact us",
  ctaPrimary:"Request your legal consultation",
- visionH:"Our vision",
- visionLine:[["Harnessing legal knowledge to ","protect rights",","],["empowering individuals to reach ","justice"," with confidence and awareness,"],["and delivering legal solutions that ","make a real difference"," in their lives."]],
- expertiseH:"Our legal expertise",numbers:["01","02","03","04"],
- expertise:[["chat","Legal consultations","To understand the legal position and make the right decisions."],
-            ["building","Corporate and business services","To establish companies, organise their operations and protect their legal interests."],
-            ["court","Litigation and legal representation","To claim rights and defend interests before the judicial authorities."],
-            ["seal","Notarization and real estate registration","To notarize real estate transactions, preserve rights and register ownership."]],
- corpLabel:"For companies",indLabel:"For individuals",flipHint:"Services",
- corpList:["Shareholder disputes and equity rights","Governance and internal relations","Entity formation and licensing","Ongoing regulatory advice"],
- indList:["Family law","Estates & inheritance","Real estate","Enforcement & collection","Criminal defence"],
+ brandName:"Mohammed Al Sabaan for Legal Practice, Consultation and Notarization",
+ visionH:"Our vision",missionH:"Our mission",aboutH:"About us",expertiseH:"Our legal expertise",numbers:["1","2","3","4","5","6"],xpOpen:"Show definition",
+ ctaShort:"Request your consultation",
+ heroText:"We provide legal practice, legal consultation and notarization services with a firmly established professional vision, built on experience, specialized knowledge and a commitment to the highest standards of quality and professionalism, placing in our clients' hands well-considered legal solutions that safeguard their rights, protect their interests and meet their aspirations with confidence and reliability.",
+ visionP1:"To be a trusted, leading destination for legal and notarial services, through professional practice grounded in legal knowledge, excellence in performance, and commitment to the highest standards of quality and reliability.",
+ visionP2:"We seek to contribute to the development of legal practice and the business environment in the Kingdom of Saudi Arabia, through legal solutions that keep pace with legislative and economic developments, preserve rights, and strengthen trust and the stability of transactions.",
+ missionP:"Providing legal and notarial services to high professional standards, grounded in regulatory knowledge, precision and commitment, and delivering effective, well-considered legal solutions that enable our clients to protect their rights, safeguard their interests, and make their decisions with confidence and legal awareness.",
+ aboutP1:"In our office, we believe legal practice is a professional responsibility built on protecting rights and safeguarding interests. It goes beyond giving advice or handling procedures to form a legal partnership, grounded in a deep understanding of clients' needs, a precise awareness of their challenges, and the work of finding the right legal solutions within the approved regulatory frameworks.",
+ aboutP2:"We provide legal practice, legal consultation and notarization services through a professional methodology based on specialized legal knowledge, careful analysis, and familiarity with the laws, regulations and procedures in force in the Kingdom of Saudi Arabia, so that legal matters are handled with efficiency and care.",
+ aboutP3:"In all our work we uphold the highest standards of professionalism, precision, confidentiality and clarity, from studying legal matters and giving opinions and advice, through drafting contracts and agreements and representing clients before the judicial authorities, to completing notarization and registration work in line with the relevant regulatory requirements.",
+ aboutP4:"We seek to build professional relationships founded on trust and reliability, and to be the legal choice in which our clients find specialized knowledge, considered legal opinion, and professional representation that preserves their rights and safeguards their interests.",
+ expertise:[["chat", "Legal consultations", "To understand the legal position and make the right decisions."],
+            ["building", "Corporate and business services", "To establish companies, organise their operations and protect their legal interests."],
+            ["court", "Litigation and legal representation", "To claim rights and defend interests before the judicial authorities."],
+            ["seal", "Notarization and real estate registration", "To notarize real estate transactions, preserve rights and register ownership."],
+            ["tree", "Estate liquidation", "Identifying, managing and liquidating estates, and distributing assets and rights to the heirs in accordance with Sharia rulings and applicable regulations."],
+            ["ledger", "Bankruptcy, financial reorganization and company liquidation", "Legal services for bankruptcy, financial reorganization and the liquidation of companies and establishments under applicable regulations, protecting the rights of the parties involved, settling obligations and concluding proceedings efficiently and professionally."]],
  careH:"Your rights deserve care.",
  careP:"We put our legal knowledge at your service, and work to give you the support that helps you understand and protect your rights.",
- careAlt:"Reception and branding of Mohammed Al Sabaan law office",
  consultH:"Take your legal step with confidence",
  consultP1:"Every legal matter has its own details. We are here to understand what you need and give you the right legal guidance under the applicable laws and regulations.",
  consultP2:"Request your legal consultation, and let us help you reach a decision built on clear knowledge.",
@@ -538,27 +562,12 @@ var L='ar', t=T.ar;
 try{if(localStorage.getItem('alsabaan-language')==='en')L='en'}catch(e){}
 var $=function(s,r){return (r||document).querySelector(s)};
 var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s))};
-function buildVision(){
-  $('#visionLine').innerHTML=t.visionLine.map(function(x){
-    return '<span>'+x[0]+'<em>'+x[1]+'</em>'+x[2]+'</span>';
-  }).join(' ');
-}
 function buildExpertise(){
   $('#xpList').innerHTML=t.expertise.map(function(x,i){
-    return '<li><span class="xp-top"><span class="xp-num">'+t.numbers[i]+'</span><span class="ico">'+svgIco(x[0])+'</span></span><h3>'+x[1]+'</h3><p>'+x[2]+'</p></li>';
+    return '<li class="xp-box"><h3><button type="button" class="xp-btn" aria-expanded="false" aria-controls="xp-'+i+'">'+
+      '<span class="xp-num">'+t.numbers[i]+'</span><span class="ico">'+svgIco(x[0])+'</span><span class="xp-title">'+x[1]+'</span><span class="xp-mark" aria-hidden="true"></span></button></h3>'+
+      '<div class="xp-panel" id="xp-'+i+'"><div><p>'+x[2]+'</p></div></div></li>';
   }).join('');
-}
-function flipCard(key,label,list,image){
-  return '<button class="flip" type="button" data-flip="'+key+'" aria-expanded="false">'+
-    '<span class="flip-in">'+
-      '<span class="flip-face flip-front"><span class="flip-pic"><img src="assets/'+image+'" alt="" loading="lazy"></span>'+
-        '<b>'+label+'</b><span class="flip-foot"><span>'+t.flipHint+'</span>'+svgIco('flip')+'</span></span>'+
-      '<span class="flip-face flip-back" aria-hidden="true"><b>'+label+'</b>'+
-        list.map(function(x){return '<span class="flip-item">'+x+'</span>'}).join('')+'</span>'+
-    '</span></button>';
-}
-function buildAudience(){
-  $('#audience').innerHTML=flipCard('corp',t.corpLabel,t.corpList,'office-desk.jpg')+flipCard('ind',t.indLabel,t.indList,'legal-details.jpg');
 }
 function buildTypes(){
   var sel=$('#f-service'),index=Math.max(sel.selectedIndex,0);
@@ -608,26 +617,22 @@ function render(){
   $('.menu-language').textContent=t.langBtn;
   $('.menu-label').textContent=L==='ar'?'القائمة':'Menu';
   $('.close-label').textContent=L==='ar'?'إغلاق':'Close';
+  $('.hdr-nav').setAttribute('aria-label',L==='ar'?'الروابط الرئيسية':'Main links');
   $('#burger').setAttribute('aria-label',L==='ar'?'فتح القائمة':'Open menu');
   $('#nav').setAttribute('aria-label',L==='ar'?'القائمة الرئيسية':'Main menu');
   $('.menu-links').setAttribute('aria-label',L==='ar'?'القائمة الرئيسية':'Main menu');
   $('#lang').setAttribute('aria-label', L==='ar'?'Switch to English':'التبديل إلى العربية');
-  $('#careImg').alt=t.careAlt;
   refreshWhatsAppLinks();
   updateTitle();
-  buildVision(); buildExpertise(); buildAudience(); buildTypes(); buildContact(); buildFiles();
+  buildExpertise(); buildTypes(); buildContact(); buildFiles();
   clearErrors();
 }
 function updateTitle(){document.title=$('#consultation').hidden?t.title:t.consultTitle}
 /* ===== interactions ===== */
 $('#lang').addEventListener('click',function(){ L = L==='ar'?'en':'ar'; try{localStorage.setItem('alsabaan-language',L)}catch(e){} render(); });
-/* Each card turns on press, so touch, keyboard and mouse share one behaviour. */
-$('#audience').addEventListener('click',function(e){
-  var card=e.target.closest('.flip'); if(!card) return;
-  var open=card.getAttribute('aria-expanded')!=='true';
-  card.setAttribute('aria-expanded',String(open));
-  $('.flip-front',card).setAttribute('aria-hidden',String(open));
-  $('.flip-back',card).setAttribute('aria-hidden',String(!open));
+$('#xpList').addEventListener('click',function(e){
+  var b=e.target.closest('.xp-btn'); if(!b) return;
+  b.setAttribute('aria-expanded',String(b.getAttribute('aria-expanded')!=='true'));
 });
 var burger=$('#burger'), nav=$('#nav');
 function setMenu(open,restoreFocus){

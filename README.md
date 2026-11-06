@@ -1,6 +1,6 @@
 # Mohammed Al Sabaan — malsabaan3
 
-Vision-led home page, compact company/individual flip cards and a separate consultation page with attachments.
+Video hero with centered statement, vision and mission boxes, about section, six opening expertise boxes and a separate consultation page.
 
 This is a standalone saved review app. Upload this folder’s CONTENTS to a separate GitHub repository and deploy `app.py` on Streamlit Community Cloud. Use Python 3.11 and add your own `WHATSAPP_NUMBER` in app Secrets. Optional `ADMIN_PASSWORD` (12+ characters) enables `?admin=1`. No real secrets, client records or analytics database are included.
 
