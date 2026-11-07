@@ -591,7 +591,7 @@ function waLink(service,details){
   var text=t.waText;
   if(service)text+='\n\n'+t.fService+': '+service;
   if(details)text+='\n\n'+details;
-  return 'https://wa.me/'+CONTACT.whatsRaw+'?text='+encodeURIComponent(text);
+  return 'https://api.whatsapp.com/send/?phone='+CONTACT.whatsRaw+'&text='+encodeURIComponent(text);
 }
 function refreshWhatsAppLinks(){
   var a=$('#waBtn');a.href=waLink();a.target='_blank';a.rel='noopener noreferrer';
@@ -863,7 +863,7 @@ function submitEnquiry(fields,url,attachments){
   });
 }
 document.addEventListener('click',function(e){
-  var a=e.target.closest('a');if(!a||!a.href.startsWith('https://wa.me/'))return;
+  var a=e.target.closest('a');if(!a||!a.href.startsWith('https://api.whatsapp.com/send/'))return;
   if(a.closest('#requestStatus'))return;
   e.preventDefault();
   submitEnquiry({source:'whatsapp',service:''},a.href);
