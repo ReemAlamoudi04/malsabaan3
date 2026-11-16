@@ -423,15 +423,36 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
       <div id="contact">
         <h4 data-i="footContact"></h4>
         <dl class="ftr-info" id="contactRows"></dl>
+        <ul class="ftr-social" aria-label="Social media" dir="ltr">
+          <li><a href="https://x.com/m_alsabaan0?s=11&amp;t=vKXOTc_h8tKChk2ZNTebsg" target="_blank" rel="noopener noreferrer">X</a></li>
+          <li><a href="https://www.tiktok.com/@m_alsabaan0" target="_blank" rel="noopener noreferrer">TikTok</a></li>
+        </ul>
       </div>
     </div>
     <div class="ftr-btm">
       <p data-i="legal"></p>
-      <p class="ftr-legal"><a href="#privacy" data-i="privacyLink"></a><span aria-hidden="true">|</span><span data-i="termsLink"></span></p>
+      <p class="ftr-legal"><a href="#privacy" data-i="privacyLink"></a><span aria-hidden="true">|</span><span data-i="termsLink"></span><button type="button" id="cookieSettings" data-i="cookieSettings"></button></p>
     </div>
   </div>
 </footer>
 
+<aside id="cookieNotice" class="cookie-notice" aria-label="Cookie preferences" hidden>
+  <div class="cookie-summary">
+    <p><span data-i="cookieText"></span> <a id="cookiePrivacy" href="#privacy" data-i="privacyLink"></a></p>
+    <div class="cookie-actions">
+      <button type="button" id="cookieCustomize" aria-expanded="false" aria-controls="cookieOptions" data-i="cookieCustomize"></button>
+      <button type="button" id="cookieReject" data-i="cookieReject"></button>
+      <button type="button" id="cookieAccept" class="cookie-primary" data-i="cookieAccept"></button>
+    </div>
+  </div>
+  <div id="cookieOptions" class="cookie-options" hidden>
+    <h2 data-i="cookieTitle"></h2>
+    <p data-i="cookieEssential"></p>
+    <label><input type="checkbox" id="cookieAnalytics"><span data-i="cookieAnalytics"></span></label>
+    <p data-i="cookieDetails"></p>
+    <button type="button" id="cookieSave" data-i="cookieSave"></button>
+  </div>
+</aside>
 <div class="mbar">
   <div class="mbar-in">
     <a href="#consultation">
@@ -501,6 +522,7 @@ ar:{
  eName:"اكتب اسمك الكامل",eMobile:"اكتب رقم جوال صحيحًا، مثل 05XXXXXXXX",eEmail:"اكتب بريدًا إلكترونيًا صحيحًا، مثل name@example.com",
  eService:"اختر نوع الاستشارة",eSubject:"اكتب موضوع الاستشارة",eDetails:"اكتب وصفًا مختصرًا للموضوع",eConsent:"الموافقة مطلوبة لإرسال الطلب",
  eFileType:"أرفق ملف PDF أو Word أو صورة بصيغة JPG أو PNG",eFileSize:"اختر ملفًا لا يتجاوز ٥ ميجابايت",eFileCount:"يمكن إرفاق ٣ ملفات كحد أقصى",eFileRead:"تعذّرت قراءة أحد المرفقات. أزله ثم اختره مرة أخرى.",
+ cookieSettings:"إعدادات ملفات الارتباط",cookieTitle:"خصوصيتك وخياراتك",cookieText:"نستخدم ملفات الارتباط والتخزين المحلي لحفظ تفضيلاتك، وبموافقتك لقياس زيارات الموقع.",cookieAccept:"الموافقة على الكل",cookieReject:"رفض غير الضروري",cookieCustomize:"تخصيص",cookieEssential:"التفضيلات الضرورية: نحفظ اختيار الخصوصية واللغة في هذا المتصفح.",cookieAnalytics:"السماح بإحصاءات الزيارة",cookieDetails:"اختياري: نستخدم معرّفات مجهولة في تخزين المتصفح لقياس الزيارات. لن تبدأ الإحصاءات دون موافقتك، ويمكنك سحبها من إعدادات ملفات الارتباط في التذييل.",cookieSave:"حفظ الخيارات",
  privacyH:"خصوصيتك محل اهتمامنا",
  privacyP:"نحرص على التعامل مع بياناتك ومعلوماتك بسرية ومهنية، وفق الأنظمة والالتزامات المهنية ذات الصلة.",
  closing:"يسعدنا أن نكون شريكك في فهم حقوقك واتخاذ خطواتك القانونية بثقة.",
@@ -548,6 +570,7 @@ en:{
  eName:"Enter your full name",eMobile:"Enter a valid Saudi mobile number, such as 05XXXXXXXX",eEmail:"Enter a valid email address, such as name@example.com",
  eService:"Choose the type of consultation",eSubject:"Enter the consultation subject",eDetails:"Enter a brief description",eConsent:"Consent is required to submit",
  eFileType:"Attach a PDF, Word file, or a JPG or PNG image",eFileSize:"Choose a file of 5 MB or less",eFileCount:"You can attach up to 3 files",eFileRead:"One attachment could not be read. Remove it and choose it again.",
+ cookieSettings:"Cookie settings",cookieTitle:"Your privacy, your choice",cookieText:"We use cookies and browser storage to remember preferences and, with your permission, measure website visits.",cookieAccept:"Accept all",cookieReject:"Reject non-essential",cookieCustomize:"Customize",cookieEssential:"Essential preferences: your privacy choice and language are saved in this browser.",cookieAnalytics:"Allow visitor analytics",cookieDetails:"Optional: anonymous browser identifiers help us count visits. Analytics starts only with your consent. Withdraw it anytime through Cookie settings in the footer.",cookieSave:"Save preferences",
  privacyH:"Your privacy matters to us",
  privacyP:"We handle your data and information confidentially and professionally, in line with the relevant regulations and professional obligations.",
  closing:"We look forward to being your partner in understanding your rights and taking your legal steps with confidence.",
@@ -598,7 +621,9 @@ function refreshWhatsAppLinks(){
 }
 function applyContactConfig(config){
   if(!config||!/^\d{8,15}$/.test(config.whatsapp||''))return;
-  CONTACT.whatsRaw=config.whatsapp;CONTACT.phoneIntl='+'+config.whatsapp;CONTACT.whatsIntl=CONTACT.phoneIntl;
+  CONTACT.whatsRaw=config.whatsapp;
+  CONTACT.phoneIntl=/^9665\d{8}$/.test(config.whatsapp)?'0'+config.whatsapp.slice(3):'+'+config.whatsapp;
+  CONTACT.whatsIntl='+'+config.whatsapp;
   CONTACT.addrAr=config.address_ar||CONTACT.addrAr;CONTACT.addrEn=config.address_en||CONTACT.addrEn;
   if(config.maps_url)CONTACT.mapsUrl=config.maps_url;
   if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(config.email||''))CONTACT.email=config.email;
@@ -809,6 +834,45 @@ if(reduceMotion){
 
 /* Bidirectional Streamlit events: one acknowledged event at a time. */
 var hostNonce=null,eventQueue=[],inflight=null,visitQueued=false,enquiryBusy=false;
+var analyticsConsent=null;
+try{analyticsConsent=localStorage.getItem('alsabaan-consent')}catch(e){}
+if(analyticsConsent!=='accepted'&&analyticsConsent!=='essential')analyticsConsent=null;
+$('#cookieNotice').hidden=analyticsConsent!==null;
+function queueVisit(){
+  if(analyticsConsent!=='accepted'||!hostNonce||visitQueued)return;
+  visitQueued=true;
+  eventQueue.push({event:{kind:'visit',id:browserId(sessionStorage,'alsabaan-visit'),visitor:browserId(localStorage,'alsabaan-visitor')}});
+  sendNext();
+}
+function setCookieConsent(choice){
+  analyticsConsent=choice;
+  try{
+    localStorage.setItem('alsabaan-consent',choice);
+    if(choice!=='accepted'){
+      localStorage.removeItem('alsabaan-visitor');sessionStorage.removeItem('alsabaan-visit');
+    }
+  }catch(e){}
+  if(choice!=='accepted')eventQueue=eventQueue.filter(function(item){return item.event.kind!=='visit'});
+  $('#cookieNotice').hidden=true;
+  $('#cookieOptions').hidden=true;
+  $('#cookieCustomize').setAttribute('aria-expanded','false');
+  $('#cookieSettings').focus();
+  queueVisit();
+}
+$('#cookieAccept').onclick=function(){setCookieConsent('accepted')};
+$('#cookieReject').onclick=function(){setCookieConsent('essential')};
+function showCookieOptions(){
+  $('#cookieNotice').hidden=false;$('#cookieOptions').hidden=false;
+  $('#cookieAnalytics').checked=analyticsConsent==='accepted';
+  $('#cookieCustomize').setAttribute('aria-expanded','true');$('#cookieAnalytics').focus();
+}
+$('#cookieSettings').onclick=showCookieOptions;
+$('#cookieCustomize').onclick=function(){
+  if(!$('#cookieOptions').hidden){$('#cookieOptions').hidden=true;this.setAttribute('aria-expanded','false');return}
+  showCookieOptions();
+};
+$('#cookieSave').onclick=function(){setCookieConsent($('#cookieAnalytics').checked?'accepted':'essential')};
+$('#cookiePrivacy').onclick=function(){$('#cookieNotice').hidden=true};
 function browserId(storage,key){
   try{var value=storage.getItem(key);if(value)return value;value=crypto.randomUUID();storage.setItem(key,value);return value}catch(e){return crypto.randomUUID()}
 }
@@ -822,10 +886,7 @@ function receiveHost(args){
   if(inflight&&args.receipt&&args.receipt.id===inflight.event.id){
     var finished=inflight;inflight=null;if(finished.done)finished.done(args.receipt);
   }
-  if(hostNonce&&!visitQueued){
-    visitQueued=true;
-    eventQueue.push({event:{kind:'visit',id:browserId(sessionStorage,'alsabaan-visit'),visitor:browserId(localStorage,'alsabaan-visitor')}});
-  }
+  queueVisit();
   sendNext();
 }
 function statusMessage(message,url){

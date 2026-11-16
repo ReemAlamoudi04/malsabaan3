@@ -1,4 +1,6 @@
 """Server-side password gate and admin-only dashboard."""
+from pathlib import Path
+import base64
 import hmac
 import time
 import pandas as pd
@@ -6,20 +8,45 @@ import streamlit as st
 
 
 def show_admin(store, password, default_phone):
+    logo = Path(__file__).resolve().parent / 'website/assets/logo.svg'
+    logo_data = base64.b64encode(logo.read_bytes()).decode('ascii')
     st.markdown('''<style>
-    .stApp{background:#f7f8fa;color:#183756}
-    [data-testid="stHeader"]{background:#f7f8fa}
-    [data-testid="stMainBlockContainer"]{max-width:1250px;padding-top:5rem}
-    [data-testid="stMetric"]{background:#edf1f5;color:#183756;padding:24px;border:1px solid #d5dee7;border-top:3px solid #b68c66}
-    [data-testid="stMetricLabel"]{color:#526577}
-    h1,h2,h3{color:#183756}
+    :root{--admin-ink:#183756;--admin-deep:#10263d;--admin-bronze:#b68c66;--admin-paper:#f7f8fa;--admin-muted:#526577;--admin-rule:#c7d0d8}
+    .stApp{background:var(--admin-paper);color:var(--admin-ink)}
+    [data-testid="stHeader"]{background:var(--admin-paper)}
+    [data-testid="stMainBlockContainer"]{max-width:1360px;padding:3rem clamp(1rem,4vw,4rem) 4rem}
     [data-testid="stMain"]{overflow-y:auto!important;overflow-x:hidden!important}
-    [data-testid="stForm"]{border-color:#d5dee7}
-    [data-testid="stTabs"] button[aria-selected="true"]{color:#183756}
-    button[kind="primary"]{background:#b68c66;color:#183756;border-color:#b68c66}
+    .admin-brand{display:flex;align-items:center;justify-content:space-between;gap:32px;padding:24px 0 30px;border-bottom:1px solid var(--admin-bronze);margin-bottom:28px}
+    .admin-brand img{display:block;width:154px;max-width:35%;height:auto}
+    .admin-brand-name{text-align:right;line-height:1.8;color:var(--admin-ink);font-size:18px;font-weight:500}
+    .admin-brand-name span{display:block;color:var(--admin-muted);font-size:13px;font-weight:400}
+    .admin-heading{background:var(--admin-deep);padding:32px 36px;margin-bottom:20px;border-bottom:2px solid var(--admin-bronze)}
+    .admin-heading h1{color:var(--admin-paper);font-size:clamp(30px,4vw,44px);font-weight:500;letter-spacing:-.025em;margin:0;padding:0;line-height:1.3}
+    .admin-heading p{color:#bfccd8;font-size:15px;line-height:1.8;margin:12px 0 0}
+    h1,h2,h3{color:var(--admin-ink);font-weight:500;letter-spacing:-.025em}
+    [data-testid="stMetric"]{background:white;color:var(--admin-ink);padding:24px;border:1px solid var(--admin-rule);border-radius:0}
+    [data-testid="stMetricLabel"]{color:var(--admin-muted)}
+    [data-testid="stMetricValue"]{color:var(--admin-ink);font-variant-numeric:tabular-nums;font-weight:500}
+    [data-testid="stForm"]{padding:24px;border:1px solid var(--admin-rule);border-radius:0;background:white}
+    [data-baseweb="tab-list"]{gap:24px;border-bottom:1px solid var(--admin-rule)}
+    [data-baseweb="tab"]{min-height:52px;color:var(--admin-muted);padding-inline:4px}
+    [data-baseweb="tab"][aria-selected="true"]{color:var(--admin-ink);font-weight:600}
+    [data-baseweb="tab-highlight"]{background:var(--admin-bronze)}
+    [data-baseweb="input"],[data-baseweb="select"]>div,[data-baseweb="textarea"]{background:white;border-radius:0;border-color:var(--admin-rule)}
+    .stButton button,.stLinkButton a,.stDownloadButton button,.stFormSubmitButton button{border-radius:0;min-height:44px;border-color:var(--admin-rule);color:var(--admin-ink)}
+    button[kind="primary"],.stFormSubmitButton button{background:var(--admin-ink);color:var(--admin-paper);border-color:var(--admin-ink)}
+    [data-testid="stAlert"]{border-radius:0}
+    button:focus-visible,a:focus-visible{outline:2px solid var(--admin-bronze);outline-offset:3px}
+    @media(max-width:600px){[data-testid="stMainBlockContainer"]{padding-top:2rem}.admin-brand{gap:16px;padding-block:16px}.admin-brand img{width:118px}.admin-brand-name{font-size:14px}.admin-brand-name span{font-size:12px}.admin-heading{padding:24px}.admin-heading h1{font-size:30px}[data-testid="stForm"]{padding:16px}[data-baseweb="tab-list"]{gap:12px}}
     </style>''', unsafe_allow_html=True)
-    st.caption('MOHAMMED AL SABAAN · OFFICE ADMINISTRATION')
-    st.title('Office dashboard | لوحة الإدارة')
+    st.markdown(f'''<header class="admin-brand">
+      <img src="data:image/svg+xml;base64,{logo_data}" alt="Mohammed Al Sabaan law firm logo">
+      <div class="admin-brand-name" lang="ar" dir="rtl">محمد منصور السبعان<span>للمحاماة والاستشارات القانونية والتوثيق</span></div>
+    </header>
+    <section class="admin-heading" aria-labelledby="admin-title">
+      <h1 id="admin-title">Admin panel</h1>
+      <p>Manage consultations, visitor insights and office settings.<br><span lang="ar" dir="rtl">إدارة الاستشارات وإحصاءات الزيارة وإعدادات المكتب</span></p>
+    </section>''', unsafe_allow_html=True)
     st.warning('Demo storage: requests, visitor counts and settings may be erased by a Streamlit restart or redeployment. Use test data only.')
     st.link_button('← Return to website / العودة للموقع', '/')
     if not password or len(password) < 12:
@@ -44,13 +71,13 @@ def show_admin(store, password, default_phone):
                 st.error('Incorrect password / كلمة المرور غير صحيحة')
         return
     st.session_state.admin_seen = time.time()
-    a,b=st.columns([5,1])
+    a,b,c=st.columns([4,2,1])
     a.caption('Signed in · session locks after 30 minutes of inactivity')
-    if b.button('Sign out'):
+    if c.button('Sign out / خروج'):
         st.session_state.pop('admin_authenticated', None)
         st.session_state.pop('admin_seen', None)
         st.rerun()
-    if st.button('Refresh dashboard / تحديث'):
+    if b.button('Refresh / تحديث'):
         st.rerun()
     metrics = store.metrics()
     cols = st.columns(3)
@@ -60,8 +87,9 @@ def show_admin(store, password, default_phone):
     with requests_tab:
         st.caption('Form submissions contain entered contact details. WhatsApp clicks record an enquiry handoff only; they do not confirm that a message was sent.')
         rows = store.requests()
-        status = st.selectbox('Status filter', ['All','Open','Closed'])
-        query = st.text_input('Search name, phone, service or subject', max_chars=100).strip().lower()
+        filter_col, search_col = st.columns([1,3])
+        status = filter_col.selectbox('Status filter / الحالة', ['All','Open','Closed'])
+        query = search_col.text_input('Search name, phone, service or subject / بحث', max_chars=100).strip().lower()
         shown = [r for r in rows if (status=='All' or r['status']==status.lower()) and (not query or query in ' '.join([r['name'],r['mobile'],r['service'],r['subject']]).lower())]
         if not shown:
             st.info('No matching requests yet / لا توجد طلبات مطابقة')
@@ -89,7 +117,7 @@ def show_admin(store, password, default_phone):
         cols[0].metric('Unique browsers / متصفحات فريدة',metrics['visitors'])
         cols[1].metric('Visits / الزيارات',metrics['visits'])
         cols[2].metric('Visits today (Riyadh)',metrics['today'])
-        st.caption('Anonymous browser IDs; no IP addresses or browsing history are collected. A new tab counts as a visit. Clearing browser storage, private mode or another device can count the same person again. These are approximate visitor counts. Admin views are excluded.')
+        st.caption('Only visitors who allow analytics are counted. Anonymous browser IDs; no IP addresses or browsing history are collected. A new tab counts as a visit. Clearing browser storage, private mode or another device can count the same person again. These are approximate visitor counts. Admin views are excluded.')
         if metrics['daily']:
             chart = pd.DataFrame(metrics['daily']).sort_values('day').set_index('day')
             st.bar_chart(chart,y='visits',color='#b68c66')

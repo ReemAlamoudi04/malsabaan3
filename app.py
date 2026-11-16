@@ -11,7 +11,7 @@ from storage import Store
 from admin import show_admin
 
 ROOT = Path(__file__).resolve().parent
-st.set_page_config(page_title="Mohammed Al Sabaan | محمد السبعان", page_icon=str(ROOT / "website/assets/logo-mark.png"), layout="wide", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Admin panel" if st.query_params.get("admin") == "1" else "Mohammed Al Sabaan | محمد السبعان", page_icon=str(ROOT / "website/assets/logo-mark.png"), layout="wide", initial_sidebar_state="collapsed")
 
 def secret(key, default=''):
     try:
@@ -25,11 +25,12 @@ def storage():
 
 try:
     store = storage()
-    phone = re.sub(r'[+\s()-]', '', secret('WHATSAPP_NUMBER'))
+    phone = '966583077488'
     if st.query_params.get('admin') == '1':
         show_admin(store, secret('ADMIN_PASSWORD'), phone)
         st.stop()
     contact = store.settings(phone)
+    contact['whatsapp'] = phone
 except Exception as exc:
     # Log the exception type and code locations, without exception messages or
     # local variables that could contain consultation details or credentials.

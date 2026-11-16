@@ -1,3 +1,2 @@
-// For standalone hosting only: set the public business WhatsApp number here.
-// Streamlit supplies its value from Secrets; keep this empty for the private POC.
-window.LAW_OFFICE_CONFIG = {};
+// Public business number in international format for phone and WhatsApp links.
+window.LAW_OFFICE_CONFIG = {whatsapp:'966583077488'};

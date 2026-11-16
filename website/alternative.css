@@ -212,5 +212,27 @@ h3:has(.xp-btn[aria-expanded=true])+.xp-panel{grid-template-rows:1fr;visibility:
 .ftr h4{color:var(--rust-lift)}
 @media(max-width:820px){.on-consult body{padding-bottom:0}}
 .ftr #contact{padding-block:0}
+.ftr ul.ftr-social{display:flex;flex-wrap:wrap;gap:8px 24px;margin-top:18px}
+.ftr-social a{display:inline-flex;align-items:center;min-height:44px}
 .ftr ul li{line-height:1.7}
 html{overflow:visible}
+
+/* First-visit consent bar, with optional inline preferences. */
+.cookie-notice{position:fixed;inset-inline:0;bottom:0;z-index:90;max-height:70dvh;overflow-y:auto;background:var(--bone);color:var(--ink);padding:20px clamp(22px,4vw,64px) max(20px,env(safe-area-inset-bottom));border-top:1px solid var(--paper-rule)}
+.cookie-notice[hidden],.cookie-options[hidden]{display:none}
+.cookie-summary{max-width:1440px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.cookie-notice p{max-width:75ch;margin:0;color:var(--on-bone-soft);font-size:15px;line-height:1.8}
+.cookie-notice a{color:var(--ink);text-decoration:underline;text-underline-offset:5px}
+.cookie-actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;flex-shrink:0}
+.cookie-notice button{font:inherit;font-size:14px;min-height:44px;padding:10px 18px;border:1px solid var(--paper-rule);border-radius:24px;background:transparent;color:var(--ink);cursor:pointer}
+.cookie-actions .cookie-primary{background:var(--ink);color:var(--bone);border-color:var(--ink)}
+.cookie-options{max-width:1440px;margin:20px auto 0;padding-top:20px;border-top:1px solid var(--paper-rule)}
+.cookie-options h2{font-family:var(--body);font-size:20px;margin:0 0 12px}
+.cookie-options label{display:flex;align-items:center;gap:12px;min-height:48px;margin-top:12px}
+.cookie-options input{width:20px;height:20px;accent-color:var(--ink)}
+.cookie-options button{margin-top:16px}
+#cookieSettings{font:inherit;color:inherit;background:transparent;border:0;text-decoration:underline;text-underline-offset:5px;cursor:pointer;padding:0;min-height:44px}
+.cookie-notice button:focus-visible,.cookie-notice a:focus-visible,#cookieSettings:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+.ftr-legal{flex-wrap:wrap;align-items:center}
+@media(max-width:1100px){.cookie-summary{flex-direction:column;align-items:stretch;gap:16px}.cookie-actions{flex-shrink:1}}
+@media(hover:hover){.cookie-notice button:hover{border-color:var(--ink);text-decoration:underline}}
