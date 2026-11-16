@@ -62,6 +62,16 @@ def show_admin(store, password, default_phone):
     [data-testid="stExpander"] summary>[data-testid="stMarkdownContainer"]{flex:1}
     [data-testid="stExpander"] summary svg,[data-testid="stExpander"] summary [data-testid="stExpanderToggleIcon"]{flex-shrink:0;margin:0}
     .st-key-admin_language_toggle button{border:1px solid var(--admin-bronze);min-width:54px;min-height:46px;background:transparent}
+    .st-key-admin_toolbar{border-block:1px solid var(--admin-rule);padding:16px 0;margin:0 0 24px}
+    .admin-session{font-size:14px;font-weight:500;color:var(--admin-ink);margin:0 0 2px}
+    .st-key-admin_toolbar [data-testid="stCaptionContainer"] p{margin:0;font-size:13px}
+    .st-key-admin_toolbar>[data-testid="stVerticalBlock"]{gap:0}
+    .st-key-admin_toolbar [data-testid="stHorizontalBlock"]{align-items:center}
+    .st-key-admin_refresh button,.st-key-admin_signout button{min-height:44px;padding:10px 18px;font-size:14px;white-space:nowrap}
+    .st-key-admin_refresh button{background:var(--admin-ink);border-color:var(--admin-ink);color:var(--admin-paper)}
+    .st-key-admin_signout button{background:transparent;color:var(--admin-ink)}
+    @media(min-width:701px){.st-key-admin_toolbar>[data-testid="stHorizontalBlock"]>[data-testid="stColumn"]:last-child,.st-key-admin_toolbar>[data-testid="stVerticalBlock"]>[data-testid="stHorizontalBlock"]>[data-testid="stColumn"]:last-child{flex:0 0 284px;width:284px}}
+    @media(max-width:700px){.st-key-admin_toolbar [data-testid="stHorizontalBlock"]{flex-wrap:wrap}.st-key-admin_toolbar [data-testid="stColumn"]{min-width:0}.st-key-admin_toolbar>[data-testid="stHorizontalBlock"]>[data-testid="stColumn"],.st-key-admin_toolbar>[data-testid="stVerticalBlock"]>[data-testid="stHorizontalBlock"]>[data-testid="stColumn"]{flex:1 1 100%;width:100%}}
     ::selection{background:#dce4eb;color:var(--admin-ink)}
     @media(max-width:700px){.admin-logo img{height:90px}[data-testid="stForm"]:has(.login-heading){padding:24px}[data-testid="stHorizontalBlock"]:has(.login-heading){flex-wrap:wrap}[data-testid="stHorizontalBlock"]:has(.login-heading)>[data-testid="stColumn"]{min-width:100%;flex:1 1 100%}[data-baseweb="tab"]{font-size:14px;padding:10px 8px}.admin-heading h1{font-size:32px}}
     </style>''', unsafe_allow_html=True)
@@ -117,17 +127,19 @@ def show_admin(store, password, default_phone):
         return
     st.session_state.admin_seen = time.time()
     st.markdown(f'<section class="admin-heading"><h1>{tr("Admin panel", "لوحة الإدارة")}</h1><p>{tr("Consultations, visitor insights and office settings", "الاستشارات وإحصاءات الزيارة وإعدادات المكتب")}</p></section>', unsafe_allow_html=True)
-    with st.expander(tr('Storage information', 'معلومات التخزين')):
-        st.write(tr('Stored here: consultation requests, uploaded attachments, internal notes, anonymous visit counts, office settings and the hashed password verifier.', 'المحفوظ هنا: طلبات الاستشارة والمرفقات والملاحظات الداخلية وإحصاءات الزيارة المجهولة وإعدادات المكتب وبصمة كلمة المرور المشفّرة.'))
-        st.warning(tr('Demo storage may reset after a restart or redeployment. Use test data only.', 'قد تُحذف البيانات التجريبية عند إعادة التشغيل أو النشر. استخدم بيانات اختبار فقط.'))
-    a,b,c=st.columns([4,2,1])
-    a.caption(tr('Signed in · session locks after 30 minutes of inactivity', 'تم تسجيل الدخول · تُقفل الجلسة بعد 30 دقيقة من عدم النشاط'))
-    if c.button(tr('Sign out', 'تسجيل الخروج')):
-        st.session_state.pop('admin_authenticated', None)
-        st.session_state.pop('admin_seen', None)
-        st.rerun()
-    if b.button(tr('Refresh', 'تحديث')):
-        st.rerun()
+    with st.container(key='admin_toolbar'):
+        status_area, action_area = st.columns([3,2], vertical_alignment='center')
+        with status_area:
+            st.markdown(f'<p class="admin-session">{tr("Signed in", "تم تسجيل الدخول")}</p>', unsafe_allow_html=True)
+            st.caption(tr('Session locks after 30 minutes of inactivity', 'تُقفل الجلسة بعد 30 دقيقة من عدم النشاط'))
+        with action_area:
+            refresh, signout = st.columns(2, gap='small')
+            if refresh.button(tr('Refresh', 'تحديث'), key='admin_refresh', use_container_width=True):
+                st.rerun()
+            if signout.button(tr('Sign out', 'تسجيل الخروج'), key='admin_signout', use_container_width=True):
+                st.session_state.pop('admin_authenticated', None)
+                st.session_state.pop('admin_seen', None)
+                st.rerun()
     metrics = store.metrics()
     cols = st.columns(3)
     for col,label,key in zip(cols,[tr('Received requests', 'الطلبات المستلمة'),tr('Open', 'المفتوحة'),tr('Closed', 'المغلقة')],['total','open','closed']):
@@ -215,3 +227,7 @@ def show_admin(store, password, default_phone):
                 st.session_state.pop('admin_authenticated', None)
                 st.session_state['admin_password_changed'] = True
                 st.rerun()
+
+        with st.expander(tr('Storage information', 'معلومات التخزين')):
+            st.write(tr('Stored here: consultation requests, uploaded attachments, internal notes, anonymous visit counts, office settings and the hashed password verifier.', 'المحفوظ هنا: طلبات الاستشارة والمرفقات والملاحظات الداخلية وإحصاءات الزيارة المجهولة وإعدادات المكتب وبصمة كلمة المرور المشفّرة.'))
+            st.warning(tr('Demo storage may reset after a restart or redeployment. Use test data only.', 'قد تُحذف البيانات التجريبية عند إعادة التشغيل أو النشر. استخدم بيانات اختبار فقط.'))
