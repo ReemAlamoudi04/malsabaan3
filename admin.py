@@ -1,7 +1,6 @@
 """Server-side password gate and admin-only dashboard."""
 from pathlib import Path
 import base64
-import hmac
 import time
 import pandas as pd
 import streamlit as st
@@ -59,6 +58,10 @@ def show_admin(store, password, default_phone):
     [data-baseweb="tab"]{flex:1;min-height:52px;padding:12px 20px;white-space:normal}
     [data-baseweb="tab"][aria-selected="true"]{background:var(--admin-ink);color:var(--admin-paper)}
     [data-baseweb="tab-highlight"]{display:none}
+    [data-testid="stExpander"] summary{display:flex;align-items:center;gap:12px;direction:ltr}
+    [data-testid="stExpander"] summary>[data-testid="stMarkdownContainer"]{flex:1}
+    [data-testid="stExpander"] summary svg,[data-testid="stExpander"] summary [data-testid="stExpanderToggleIcon"]{flex-shrink:0;margin:0}
+    .st-key-admin_language_toggle button{border:1px solid var(--admin-bronze);min-width:54px;min-height:46px;background:transparent}
     ::selection{background:#dce4eb;color:var(--admin-ink)}
     @media(max-width:700px){.admin-logo img{height:90px}[data-testid="stForm"]:has(.login-heading){padding:24px}[data-testid="stHorizontalBlock"]:has(.login-heading){flex-wrap:wrap}[data-testid="stHorizontalBlock"]:has(.login-heading)>[data-testid="stColumn"]{min-width:100%;flex:1 1 100%}[data-baseweb="tab"]{font-size:14px;padding:10px 8px}.admin-heading h1{font-size:32px}}
     </style>''', unsafe_allow_html=True)
@@ -68,24 +71,29 @@ def show_admin(store, password, default_phone):
     st.markdown(f'''<style>
     .stApp,.stApp input,.stApp textarea,.stApp button,.stApp select,.stApp p,.stApp label{{font-family:"{body_font}",sans-serif}}
     [data-testid="stMainBlockContainer"]{{direction:{direction}}}
+    [data-testid="stExpander"] summary p{{direction:{direction};text-align:{"right" if language == "ar" else "left"}}}
     .admin-heading h1,h1,h2,h3{{font-family:"{display_font}",serif}}
     </style>''', unsafe_allow_html=True)
     brand, actions = st.columns([4,2], vertical_alignment='center')
     with brand:
         st.markdown(f'<a class="admin-logo" href="/" target="_self"><img src="data:image/svg+xml;base64,{logo_data}" alt="Mohammed Al Sabaan — محمد منصور السبعان"></a>', unsafe_allow_html=True)
     with actions:
-        selected = st.selectbox('اللغة / Language', ['ar','en'], index=0 if language == 'ar' else 1, format_func=lambda value: 'العربية' if value == 'ar' else 'English', key='admin_language_picker')
-        if selected != language:
-            st.query_params['admin_lang'] = selected
+        if st.button('EN' if language == 'ar' else 'عربي', key='admin_language_toggle', help=tr('Switch to Arabic', 'Switch to English')):
+            st.query_params['admin_lang'] = 'en' if language == 'ar' else 'ar'
             st.rerun()
         st.link_button(tr('Return to website', 'العودة للموقع'), '/')
     st.markdown('<div class="admin-header-rule"></div>', unsafe_allow_html=True)
-    if not password or len(password) < 12:
+    credential_version = store.admin_credential_version(password)
+    if st.session_state.get("admin_authenticated") and st.session_state.get("admin_credential_version") != credential_version:
+        st.session_state.pop("admin_authenticated", None)
+    if not store.has_admin_password(password):
         st.info(tr('Set ADMIN_PASSWORD in Streamlit Secrets to a password of at least 12 characters. The dashboard stays locked until then.', 'أضف ADMIN_PASSWORD في إعدادات Streamlit Secrets بكلمة مرور لا تقل عن 12 حرفًا لتفعيل لوحة الإدارة.'))
         return
     if time.time() - st.session_state.get('admin_seen', 0) > 1800:
         st.session_state.pop('admin_authenticated', None)
     if not st.session_state.get('admin_authenticated'):
+        if st.session_state.pop('admin_password_changed', False):
+            st.success(tr('Password updated. Sign in with your new password.', 'تم تحديث كلمة المرور. سجّل الدخول بكلمة المرور الجديدة.'))
         _, login, _ = st.columns([1,1.4,1])
         with login:
             with st.form('admin_login'):
@@ -97,9 +105,10 @@ def show_admin(store, password, default_phone):
         if submit:
             if not store.login_allowed():
                 st.error(tr('Too many unsuccessful attempts. Please wait 15 minutes.', 'محاولات غير ناجحة كثيرة. يرجى الانتظار 15 دقيقة.'))
-            elif hmac.compare_digest(entered.encode(), password.encode()):
+            elif store.verify_admin_password(entered, password):
                 store.login_succeeded()
                 st.session_state.admin_authenticated = True
+                st.session_state.admin_credential_version = credential_version
                 st.session_state.admin_seen = time.time()
                 st.rerun()
             else:
@@ -109,6 +118,7 @@ def show_admin(store, password, default_phone):
     st.session_state.admin_seen = time.time()
     st.markdown(f'<section class="admin-heading"><h1>{tr("Admin panel", "لوحة الإدارة")}</h1><p>{tr("Consultations, visitor insights and office settings", "الاستشارات وإحصاءات الزيارة وإعدادات المكتب")}</p></section>', unsafe_allow_html=True)
     with st.expander(tr('Storage information', 'معلومات التخزين')):
+        st.write(tr('Stored here: consultation requests, uploaded attachments, internal notes, anonymous visit counts, office settings and the hashed password verifier.', 'المحفوظ هنا: طلبات الاستشارة والمرفقات والملاحظات الداخلية وإحصاءات الزيارة المجهولة وإعدادات المكتب وبصمة كلمة المرور المشفّرة.'))
         st.warning(tr('Demo storage may reset after a restart or redeployment. Use test data only.', 'قد تُحذف البيانات التجريبية عند إعادة التشغيل أو النشر. استخدم بيانات اختبار فقط.'))
     a,b,c=st.columns([4,2,1])
     a.caption(tr('Signed in · session locks after 30 minutes of inactivity', 'تم تسجيل الدخول · تُقفل الجلسة بعد 30 دقيقة من عدم النشاط'))
@@ -181,3 +191,27 @@ def show_admin(store, password, default_phone):
                     st.success(tr('Office settings saved', 'تم حفظ إعدادات المكتب'))
                 except (ValueError,TypeError):
                     st.error(tr('Check the phone number, coordinates, text fields and HTTPS Google Maps link.', 'تحقق من رقم التواصل والإحداثيات والنصوص ورابط خرائط Google الآمن.'))
+
+        st.subheader(tr('Change admin password', 'تغيير كلمة مرور الإدارة'))
+        st.caption(tr('Use at least 12 characters. Changing your password signs out all admin sessions. This password is saved in demo storage; if storage resets, ADMIN_PASSWORD in Streamlit Secrets becomes active again.', 'استخدم 12 حرفًا على الأقل. يؤدي تغيير كلمة المرور إلى تسجيل خروج جلسات الإدارة. تُحفظ كلمة المرور في التخزين التجريبي؛ إذا مُسح التخزين، تعود كلمة ADMIN_PASSWORD الموجودة في Streamlit Secrets للعمل.'))
+        with st.form('change_admin_password', clear_on_submit=True):
+            current = st.text_input(tr('Current password', 'كلمة المرور الحالية'), type='password', key='admin_current_password')
+            replacement = st.text_input(tr('New password', 'كلمة المرور الجديدة'), type='password', key='admin_new_password', max_chars=1024)
+            confirmation = st.text_input(tr('Confirm new password', 'تأكيد كلمة المرور الجديدة'), type='password', key='admin_confirm_password', max_chars=1024)
+            change = st.form_submit_button(tr('Change password', 'تغيير كلمة المرور'))
+        if change:
+            if not store.login_allowed():
+                st.error(tr('Too many unsuccessful attempts. Please wait 15 minutes.', 'محاولات غير ناجحة كثيرة. انتظر 15 دقيقة.'))
+            elif replacement != confirmation:
+                st.error(tr('New passwords do not match.', 'كلمتا المرور الجديدتان غير متطابقتين.'))
+            elif not 12 <= len(replacement) <= 1024:
+                st.error(tr('Use at least 12 characters.', 'استخدم 12 حرفًا على الأقل.'))
+            elif not store.verify_admin_password(current, password):
+                store.login_failed()
+                st.error(tr('Incorrect current password.', 'كلمة المرور الحالية غير صحيحة.'))
+            else:
+                store.change_admin_password(current, replacement, password)
+                store.login_succeeded()
+                st.session_state.pop('admin_authenticated', None)
+                st.session_state['admin_password_changed'] = True
+                st.rerun()

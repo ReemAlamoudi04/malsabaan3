@@ -8,6 +8,7 @@ import hashlib
 import hmac
 import json
 import re
+import secrets
 import sqlite3
 import uuid
 from urllib.parse import urlparse
@@ -108,6 +109,7 @@ class Store:
                 'CREATE TABLE IF NOT EXISTS consultations (id TEXT PRIMARY KEY, created_at TEXT NOT NULL, updated_at TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN (\'open\',\'closed\')), source TEXT NOT NULL, language TEXT NOT NULL, service TEXT NOT NULL, name TEXT NOT NULL, mobile TEXT NOT NULL, email TEXT NOT NULL, details TEXT NOT NULL, notes TEXT NOT NULL DEFAULT \'\')',
                 'CREATE TABLE IF NOT EXISTS visits (id TEXT PRIMARY KEY, visitor_hash TEXT NOT NULL, created_at TEXT NOT NULL)',
                 'CREATE TABLE IF NOT EXISTS office_settings (id INTEGER PRIMARY KEY, payload TEXT NOT NULL)',
+                'CREATE TABLE IF NOT EXISTS admin_credentials (id INTEGER PRIMARY KEY CHECK(id=1), salt TEXT NOT NULL, digest TEXT NOT NULL, version TEXT NOT NULL)',
                 'CREATE TABLE IF NOT EXISTS login_attempts (id TEXT PRIMARY KEY, created_at TEXT NOT NULL)',
                 'CREATE TABLE IF NOT EXISTS attachments (id TEXT PRIMARY KEY, consultation_id TEXT NOT NULL REFERENCES consultations(id), created_at TEXT NOT NULL, filename TEXT NOT NULL, content BLOB NOT NULL)',
                 'CREATE INDEX IF NOT EXISTS attachments_consultation ON attachments(consultation_id)',
@@ -117,6 +119,42 @@ class Store:
                 self.run(c, sql)
             if 'subject' not in [row['name'] for row in self.run(c, 'PRAGMA table_info(consultations)')]:
                 self.run(c, "ALTER TABLE consultations ADD COLUMN subject TEXT NOT NULL DEFAULT ''")
+
+    @staticmethod
+    def _verify_admin(candidate, bootstrap, row):
+        if not isinstance(candidate, str) or len(candidate) > 1024:
+            return False
+        if row:
+            digest = hashlib.pbkdf2_hmac('sha256', candidate.encode(), bytes.fromhex(row['salt']), 600000).hex()
+            return hmac.compare_digest(digest, row['digest'])
+        return len(bootstrap) >= 12 and hmac.compare_digest(candidate.encode(), bootstrap.encode())
+
+    def admin_credential_version(self, bootstrap):
+        with self.connection() as c:
+            row = self.run(c, 'SELECT version FROM admin_credentials WHERE id=1').fetchone()
+        return row['version'] if row else hashlib.sha256(bootstrap.encode()).hexdigest()
+
+    def has_admin_password(self, bootstrap):
+        with self.connection() as c:
+            row = self.run(c, 'SELECT id FROM admin_credentials WHERE id=1').fetchone()
+        return bool(row) or len(bootstrap) >= 12
+
+    def verify_admin_password(self, candidate, bootstrap):
+        with self.connection() as c:
+            row = self.run(c, 'SELECT * FROM admin_credentials WHERE id=1').fetchone()
+        return self._verify_admin(candidate, bootstrap, row)
+
+    def change_admin_password(self, current, replacement, bootstrap):
+        if not isinstance(replacement, str) or not 12 <= len(replacement) <= 1024:
+            raise ValueError('Password must contain 12 to 1024 characters.')
+        with self.connection() as c:
+            self.run(c, 'BEGIN IMMEDIATE')
+            row = self.run(c, 'SELECT * FROM admin_credentials WHERE id=1').fetchone()
+            if not self._verify_admin(current, bootstrap, row):
+                raise ValueError('Incorrect current password.')
+            salt = secrets.token_bytes(32)
+            digest = hashlib.pbkdf2_hmac('sha256', replacement.encode(), salt, 600000).hex()
+            self.run(c, 'INSERT INTO admin_credentials(id,salt,digest,version) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET salt=excluded.salt,digest=excluded.digest,version=excluded.version', (salt.hex(), digest, str(uuid.uuid4())))
 
     def settings(self, phone=''):
         with self.connection() as c:
