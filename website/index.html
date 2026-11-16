@@ -389,6 +389,8 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
     </div>
   </section>
 
+</main>
+<main id="privacyPage" hidden>
   <section class="band closing" id="privacy" aria-labelledby="privacy-title">
     <div class="wrap closing-in">
       <span class="closing-rule" aria-hidden="true"></span>
@@ -398,6 +400,12 @@ h1,h2,h3{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;l
         <div>
           <h2 id="privacy-title" data-i="privacyH"></h2>
           <p data-i="privacyP"></p>
+          <h3 data-i="privacyDataH"></h3><p data-i="privacyDataP"></p>
+          <h3 data-i="privacyStorageH"></h3><p data-i="privacyStorageP"></p>
+          <h3 data-i="privacyWhatsH"></h3><p data-i="privacyWhatsP"></p>
+          <h3 data-i="privacyChoiceH"></h3><p data-i="privacyChoiceP"></p>
+          <button type="button" id="privacyCookieSettings" class="btn" data-i="cookieSettings"></button>
+          <a href="#top" class="privacy-home" data-i="navHome"></a>
         </div>
       </div>
     </div>
@@ -523,7 +531,11 @@ ar:{
  eService:"اختر نوع الاستشارة",eSubject:"اكتب موضوع الاستشارة",eDetails:"اكتب وصفًا مختصرًا للموضوع",eConsent:"الموافقة مطلوبة لإرسال الطلب",
  eFileType:"أرفق ملف PDF أو Word أو صورة بصيغة JPG أو PNG",eFileSize:"اختر ملفًا لا يتجاوز ٥ ميجابايت",eFileCount:"يمكن إرفاق ٣ ملفات كحد أقصى",eFileRead:"تعذّرت قراءة أحد المرفقات. أزله ثم اختره مرة أخرى.",
  cookieSettings:"إعدادات ملفات الارتباط",cookieTitle:"خصوصيتك وخياراتك",cookieText:"نستخدم ملفات الارتباط والتخزين المحلي لحفظ تفضيلاتك، وبموافقتك لقياس زيارات الموقع.",cookieAccept:"الموافقة على الكل",cookieReject:"رفض غير الضروري",cookieCustomize:"تخصيص",cookieEssential:"التفضيلات الضرورية: نحفظ اختيار الخصوصية واللغة في هذا المتصفح.",cookieAnalytics:"السماح بإحصاءات الزيارة",cookieDetails:"اختياري: نستخدم معرّفات مجهولة في تخزين المتصفح لقياس الزيارات. لن تبدأ الإحصاءات دون موافقتك، ويمكنك سحبها من إعدادات ملفات الارتباط في التذييل.",cookieSave:"حفظ الخيارات",
- privacyH:"خصوصيتك محل اهتمامنا",
+ privacyH:"سياسة الخصوصية",
+ privacyDataH:"بيانات طلب الاستشارة",privacyDataP:"عند إرسال طلب استشارة، تُحفظ البيانات التي تدخلها، مثل الاسم ورقم الجوال والبريد الإلكتروني وموضوع الطلب والتفاصيل والمرفقات، وتتاح لإدارة المكتب لمتابعة الطلب.",
+ privacyStorageH:"ملفات الارتباط والتخزين المحلي",privacyStorageP:"نحفظ اللغة واختيار الخصوصية في متصفحك. عند السماح بالإحصاءات، تُستخدم معرّفات مجهولة لحساب الزيارات والمتصفحات الفريدة. لا يبدأ هذا القياس قبل موافقتك.",
+ privacyWhatsH:"التواصل عبر واتساب",privacyWhatsP:"عند المتابعة إلى واتساب، تنتقل إلى خدمة خارجية تخضع لسياسة الخصوصية الخاصة بها. تُسجل نقرة واتساب كطلب تواصل، ولا تؤكد إرسال رسالة.",
+ privacyChoiceH:"خياراتك والتواصل معنا",privacyChoiceP:"يمكنك تغيير موافقتك أو سحبها من إعدادات ملفات الارتباط في أي وقت. لطلب مراجعة بيانات استشارتك أو تصحيحها أو حذفها، تواصل مع المكتب على 0583077488.",
  privacyP:"نحرص على التعامل مع بياناتك ومعلوماتك بسرية ومهنية، وفق الأنظمة والالتزامات المهنية ذات الصلة.",
  closing:"يسعدنا أن نكون شريكك في فهم حقوقك واتخاذ خطواتك القانونية بثقة.",
  footLinks:"روابط مهمة",footContact:"معلومات التواصل",rowPhone:"رقم الهاتف",rowEmail:"البريد الإلكتروني",rowAddress:"العنوان",rowSocial:"حسابات التواصل الاجتماعي",
@@ -571,7 +583,11 @@ en:{
  eService:"Choose the type of consultation",eSubject:"Enter the consultation subject",eDetails:"Enter a brief description",eConsent:"Consent is required to submit",
  eFileType:"Attach a PDF, Word file, or a JPG or PNG image",eFileSize:"Choose a file of 5 MB or less",eFileCount:"You can attach up to 3 files",eFileRead:"One attachment could not be read. Remove it and choose it again.",
  cookieSettings:"Cookie settings",cookieTitle:"Your privacy, your choice",cookieText:"We use cookies and browser storage to remember preferences and, with your permission, measure website visits.",cookieAccept:"Accept all",cookieReject:"Reject non-essential",cookieCustomize:"Customize",cookieEssential:"Essential preferences: your privacy choice and language are saved in this browser.",cookieAnalytics:"Allow visitor analytics",cookieDetails:"Optional: anonymous browser identifiers help us count visits. Analytics starts only with your consent. Withdraw it anytime through Cookie settings in the footer.",cookieSave:"Save preferences",
- privacyH:"Your privacy matters to us",
+ privacyH:"Privacy policy",
+ privacyDataH:"Consultation information",privacyDataP:"When you submit a consultation request, the details you enter, such as your name, phone number, email, subject, message and attachments, are stored and made available to office administrators to follow up.",
+ privacyStorageH:"Cookies and browser storage",privacyStorageP:"Your language and privacy choice are stored in your browser. If you allow analytics, anonymous identifiers count visits and unique browsers. This measurement starts only after your consent.",
+ privacyWhatsH:"WhatsApp communication",privacyWhatsP:"Continuing to WhatsApp opens an external service governed by its own privacy policy. A WhatsApp click is recorded as a contact request and does not confirm that a message was sent.",
+ privacyChoiceH:"Your choices and contact",privacyChoiceP:"Change or withdraw consent anytime through Cookie settings. To request review, correction or deletion of your consultation information, contact the office at 0583077488.",
  privacyP:"We handle your data and information confidentially and professionally, in line with the relevant regulations and professional obligations.",
  closing:"We look forward to being your partner in understanding your rights and taking your legal steps with confidence.",
  footLinks:"Important links",footContact:"Contact information",rowPhone:"Phone number",rowEmail:"Email",rowAddress:"Address",rowSocial:"Social media accounts",
@@ -652,7 +668,7 @@ function render(){
   buildExpertise(); buildTypes(); buildContact(); buildFiles();
   clearErrors();
 }
-function updateTitle(){document.title=$('#consultation').hidden?t.title:t.consultTitle}
+function updateTitle(){document.title=!$('#privacyPage').hidden?t.privacyH+' | Mohammed Al Sabaan':$('#consultation').hidden?t.title:t.consultTitle}
 /* ===== interactions ===== */
 $('#lang').addEventListener('click',function(){ L = L==='ar'?'en':'ar'; try{localStorage.setItem('alsabaan-language',L)}catch(e){} render(); });
 $('#xpList').addEventListener('click',function(e){
@@ -688,11 +704,12 @@ window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
 var reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 function showPage(hash){
   if(hash==='#contact')return false;
-  var consult=hash==='#consultation'||hash==='#privacy',changed=$('#consultation').hidden===consult,v=$('#heroVid');
-  $('#home').hidden=consult;$('#consultation').hidden=!consult;
-  document.documentElement.classList.toggle('on-consult',consult);
+  var privacy=hash==='#privacy',consult=hash==='#consultation',away=privacy||consult;
+  var changed=$('#home').hidden!==away,v=$('#heroVid');
+  $('#home').hidden=away;$('#consultation').hidden=!consult;$('#privacyPage').hidden=!privacy;
+  document.documentElement.classList.toggle('on-consult',away);
   updateTitle();
-  if(changed){if(consult)v.pause();else if(!reduceMotion)v.play().catch(function(){})}
+  if(changed){if(away)v.pause();else if(!reduceMotion)v.play().catch(function(){})}
   return changed;
 }
 function hdrVisible(){return hdr.offsetHeight+parseFloat(getComputedStyle(hdr).top)}
@@ -867,6 +884,7 @@ function showCookieOptions(){
   $('#cookieCustomize').setAttribute('aria-expanded','true');$('#cookieAnalytics').focus();
 }
 $('#cookieSettings').onclick=showCookieOptions;
+$('#privacyCookieSettings').onclick=showCookieOptions;
 $('#cookieCustomize').onclick=function(){
   if(!$('#cookieOptions').hidden){$('#cookieOptions').hidden=true;this.setAttribute('aria-expanded','false');return}
   showCookieOptions();
